@@ -7,7 +7,7 @@ import { Menu, Dropdown, Header } from 'semantic-ui-react';
 import { Roles } from 'meteor/alanning:roles';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
-class NavBar extends React.Component {
+class SecondaryNavBar extends React.Component {
   render() {
     const menuStyle = { paddingBottom: '10px' };
     return (
@@ -44,14 +44,14 @@ class NavBar extends React.Component {
 }
 
 /** Declare the types of all properties. */
-NavBar.propTypes = {
+SecondaryNavBar.propTypes = {
   currentUser: PropTypes.string,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
-const NavBarContainer = withTracker(() => ({
+const SecondaryNavBarContainer = withTracker(() => ({
   currentUser: Meteor.user() ? Meteor.user().username : '',
-}))(NavBar);
+}))(SecondaryNavBar);
 
 /** Enable ReactRouter for this component. https://reacttraining.com/react-router/web/api/withRouter */
-export default withRouter(NavBarContainer);
+export default withRouter(SecondaryNavBarContainer);
