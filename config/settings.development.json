@@ -1,7 +1,9 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }
+    { "email": "admin@dcs.com", "password": "admin", "firstName": "admin", "lastName": "admin", "year": 4, "role": "admin" },
+    { "email": "mirabela@hawaii.edu", "password": "mirabela","firstName": "Mirabela", "lastName": "Medallon", "year": 3,
+      "email": "bwong7@hawaii.edu", "password": "brandon","firstName": "Brandon", "lastName": "Wong", "year": 4,
+      "email": "japhetye@hawaii.edu", "password": "japhet","firstName": "Japhet", "lastName": "Ye", "year": 3 }
   ],
 
   "defaultData": [
