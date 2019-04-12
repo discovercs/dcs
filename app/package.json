@@ -29,7 +29,7 @@
     "eslint-plugin-react": "^7.12.4"
   },
   "scripts": {
-    "start": "meteor --no-release-check --settings ../config/settings.development.json",
+    "start": "meteor --no-release-check --settings ../config/settings.production.json",
     "lint": "eslint --quiet --ext .jsx --ext .js ./imports"
   }
 }
