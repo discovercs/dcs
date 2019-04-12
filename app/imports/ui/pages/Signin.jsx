@@ -4,6 +4,12 @@ import { Link, Redirect } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { Container, Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 
+const style = {
+  backgroundImage: 'url(/images/bg2.jpg)',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+};
+
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
@@ -46,10 +52,10 @@ export default class Signin extends React.Component {
     }
     // Otherwise return the Login form.
     return (
-        <Container>
+        <div style={style}><Container>
           <Grid textAlign="center" verticalAlign="middle" centered columns={2}>
             <Grid.Column>
-              <Header as="h2" textAlign="center">
+              <Header inverted as="h2" textAlign="center">
                 Login to your account
               </Header>
               <Form onSubmit={this.handleSubmit}>
@@ -89,7 +95,7 @@ export default class Signin extends React.Component {
               )}
             </Grid.Column>
           </Grid>
-        </Container>
+        </Container></div>
     );
   }
 }
