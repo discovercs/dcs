@@ -12,15 +12,15 @@ const OpportunitiesSchema = new SimpleSchema({
   description: String,
   interestIDs: {
     type: String,
-    array: []
+    // TODO: list: []
   },
   careerIDs: {
     type: String,
-    array: []
+    // TODO: list: []
   },
   types: {
     type: String,
-    array: []
+    // TODO: list: []
   },
   date: Date,
   year: Number,
