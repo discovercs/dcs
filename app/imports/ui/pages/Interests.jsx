@@ -12,9 +12,9 @@ class Interests extends React.Component {
     return (
        <div>
            <Menu inverted widths={3}>
-               <Menu.Item>Interest</Menu.Item>
-               <Menu.Item>Careers</Menu.Item>
-               <Menu.Item>Opportunities</Menu.Item>
+               <Menu.Item activeClassName="active">Test2</Menu.Item>
+               <Menu.Item activeClassName="active">Test2</Menu.Item>
+               <Menu.Item activeClassName="active">Test2</Menu.Item>
            </Menu>
        </div>
     );
