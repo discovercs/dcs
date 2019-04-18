@@ -2,7 +2,8 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '/imports/api/stuff/stuff';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Segment } from 'semantic-ui-react';
+import { Segment, List } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Interests extends React.Component {
@@ -12,14 +13,44 @@ class Interests extends React.Component {
     return (
         <Segment.Group>
             <Segment.Group horizontal>
-                <Segment>Left</Segment>
-                <Segment>Middle</Segment>
-                <Segment>Right</Segment>
+               <Link to='/home'> <Segment >Languages
+                <List as='ol'>
+                    <List.Item as='li' value='-'>C</List.Item>
+                    <List.Item as='li' value='-'>C++</List.Item>
+                    <List.Item as='li' value='-'>Java</List.Item>
+                    <List.Item as='li' value='-'>JavaScript</List.Item>
+                </List>
+               </Segment> </Link>
+                <Link to='/home'>
+                <Segment>Subjects
+                    <List as='ol'>
+                        <List.Item as='li' value='-'>Biology</List.Item>
+                        <List.Item as='li' value='-'>Art</List.Item>
+                        <List.Item as='li' value='-'>Chemistry</List.Item>
+                        <List.Item as='li' value='-'>Astronomy</List.Item>
+                    </List>
+                </Segment> </Link>
             </Segment.Group>
-            <Segment>Middle</Segment>
-            <Segment>Middle</Segment>
-            <Segment>Middle</Segment>
-            <Segment>Bottom</Segment>
+            <Segment.Group horizontal>
+                <Link to='/home'>
+                <Segment>Computer Science Fields
+                    <List as='ol'>
+                        <List.Item as='li' value='-'>Data Science</List.Item>
+                        <List.Item as='li' value='-'>Computer Security</List.Item>
+                        <List.Item as='li' value='-'>Algorithm Analysis</List.Item>
+                        <List.Item as='li' value='-'>Web Development</List.Item>
+                    </List>
+                </Segment> </Link>
+                <Link to='/home'>
+                <Segment>Personal
+                    <List as='ol'>
+                        <List.Item as='li' value='-'>Team Collaborator</List.Item>
+                        <List.Item as='li' value='-'>Leadership Roles</List.Item>
+                        <List.Item as='li' value='-'>Community Builder</List.Item>
+                        <List.Item as='li' value='-'>Innovator</List.Item>
+                    </List>
+                </Segment> </Link>
+            </Segment.Group>
         </Segment.Group>
     );
   }
