@@ -14,7 +14,7 @@ class Careers extends React.Component {
            <Menu inverted widths={3}>
                <Menu.Item activeClassName="active">Test1</Menu.Item>
                <Menu.Item activeClassName="active">Test1</Menu.Item>
-               <Menu.Item activeClassName="active">Tst1</Menu.Item>
+               <Menu.Item activeClassName="active">Test1</Menu.Item>
            </Menu>
        </div>
     );
