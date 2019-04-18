@@ -1,0 +1,37 @@
+{
+  "defaultAccounts": [
+    {
+      "email": "admin@dcs.com",
+      "password": "admin",
+      "first": "admin",
+      "last": "admin",
+      "year": 4,
+      "gender": "other",
+      "role": "admin"
+    },
+    {
+      "email": "mirabela@hawaii.edu",
+      "password": "mirabela",
+      "first": "Mirabela",
+      "last": "Medallon",
+      "year": 3,
+      "gender": "female"
+    },
+    {
+      "email": "bwong7@hawaii.edu",
+      "password": "brandon",
+      "first": "Brandon",
+      "last": "Wong",
+      "year": 4,
+      "gender": "male"
+    },
+    {
+      "email": "japhetye@hawaii.edu",
+      "password": "japhet",
+      "first": "Japhet",
+      "last": "Ye",
+      "year": 3,
+      "gender": "male"
+    }
+  ]
+}
