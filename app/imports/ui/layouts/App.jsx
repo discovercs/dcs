@@ -10,6 +10,8 @@ import Landing from '../pages/Landing';
 import ListStuff from '../pages/ListStuff';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import Careers from '../pages/Careers';
+import Interests from '../pages/Interests';
+import Opportunities from '../pages/Opportunities';
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -28,7 +30,9 @@ class App extends React.Component {
               <Route path="/signin" component={Signin}/>
               <Route path="/signup" component={Signup}/>
               <ProtectedRoute path="/home" component={ListStuff}/>
-              <ProtectedRoute path="/explore" component={Careers}/>
+                <ProtectedRoute path="/interests" component={Interests}/>
+                <ProtectedRoute path="/careers" component={Careers}/>
+                <ProtectedRoute path="/opportunities" component={Opportunities}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>

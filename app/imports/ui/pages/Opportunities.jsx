@@ -5,16 +5,16 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Menu } from 'semantic-ui-react';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class Careers extends React.Component {
+class Opportunities extends React.Component {
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (
        <div>
            <Menu inverted widths={3}>
-               <Menu.Item activeClassName="active">Test1</Menu.Item>
-               <Menu.Item activeClassName="active">Test1</Menu.Item>
-               <Menu.Item activeClassName="active">Test1</Menu.Item>
+               <Menu.Item>Test3</Menu.Item>
+               <Menu.Item>Test3</Menu.Item>
+               <Menu.Item>Test3</Menu.Item>
            </Menu>
        </div>
     );
@@ -22,4 +22,4 @@ class Careers extends React.Component {
 
 }
 
-export default (Careers);
+export default (Opportunities);
