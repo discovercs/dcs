@@ -26,8 +26,7 @@ function createUser(email, password, first, last, year, gender, role) {
 if (Meteor.users.find().count() === 0) {
   if (Meteor.settings.defaultAccounts) {
     console.log('Creating the default user(s)');
-    Meteor.settings.defaultAccounts.map(({ email, password, first, last, year, gender,
-                                           role }) => createUser(email, password, first, last, year, gender, role));
+    Meteor.settings.defaultAccounts.map(({ email, password, first, last, year, gender, role }) => createUser(email, password, first, last, year, gender, role));
   } else {
     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
   }
