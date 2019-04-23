@@ -13,7 +13,7 @@ class Interests extends React.Component {
     return (
         <Segment.Group>
             <Segment.Group horizontal>
-               <Link to='/home'> <Segment >Languages
+               <Link to='/home'> <Segment stretched>Languages
                 <List as='ol'>
                     <List.Item as='li' value='-'>C</List.Item>
                     <List.Item as='li' value='-'>C++</List.Item>
@@ -22,7 +22,7 @@ class Interests extends React.Component {
                 </List>
                </Segment> </Link>
                 <Link to='/home'>
-                <Segment>Subjects
+                <Segment stretched>Subjects
                     <List as='ol'>
                         <List.Item as='li' value='-'>Biology</List.Item>
                         <List.Item as='li' value='-'>Art</List.Item>
@@ -33,7 +33,7 @@ class Interests extends React.Component {
             </Segment.Group>
             <Segment.Group horizontal>
                 <Link to='/home'>
-                <Segment>Computer Science Fields
+                <Segment stretched>Computer Science Fields
                     <List as='ol'>
                         <List.Item as='li' value='-'>Data Science</List.Item>
                         <List.Item as='li' value='-'>Computer Security</List.Item>
@@ -42,7 +42,7 @@ class Interests extends React.Component {
                     </List>
                 </Segment> </Link>
                 <Link to='/home'>
-                <Segment>Personal
+                <Segment stretched>Personal
                     <List as='ol'>
                         <List.Item as='li' value='-'>Team Collaborator</List.Item>
                         <List.Item as='li' value='-'>Leadership Roles</List.Item>
