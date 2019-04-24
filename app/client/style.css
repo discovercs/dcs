@@ -2,3 +2,8 @@
   background-image: url('/images/bg.jpg');
   background-size: 100%;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,400i,700,700i');
+body, p, h1, h2, h3, h4, h5, h6, h7, .ui {
+  font-family: 'Rubik', sans-serif !important;
+}
