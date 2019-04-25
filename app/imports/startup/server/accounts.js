@@ -15,6 +15,11 @@ function createUser(email, password, first, last, year, gender, role) {
       last: last,
       year: year,
       gender: gender,
+      pic: 'images/defaultprofilepic.jpg',
+      interestIDs: [''],
+      opportunityIDs: [''],
+      careerIDs: [''],
+      friendIDs: [''],
     },
   });
   if (role === 'admin') {
