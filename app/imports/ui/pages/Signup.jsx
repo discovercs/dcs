@@ -53,7 +53,7 @@ export default class Signup extends React.Component {
         last: last,
         year: year,
         gender: gender,
-        pic: 'images/defaultprofilepic.jpg',
+        pic: '/images/def.png',
         interestIDs: [''],
         opportunityIDs: [''],
         careerIDs: [''],
