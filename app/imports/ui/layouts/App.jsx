@@ -13,6 +13,7 @@ import Home from '../pages/Home';
 import Careers from '../pages/Careers';
 import Interests from '../pages/Interests';
 import Opportunities from '../pages/Opportunities';
+import Friends from '../pages/Friends';
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -36,7 +37,7 @@ class App extends React.Component {
                 <ProtectedRoute path="/interests" component={Interests}/>
                 <ProtectedRoute path="/careers" component={Careers}/>
                 <ProtectedRoute path="/opportunities" component={Opportunities}/>
-              <ProtectedRoute path="/list" component={ListStuff}/>
+                <ProtectedRoute path="/friends" component={Friends}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
               <AdminProtectedRoute path="/admin" component={ListStuffAdmin}/>
               <ProtectedRoute path="/signout" component={Signout}/>
