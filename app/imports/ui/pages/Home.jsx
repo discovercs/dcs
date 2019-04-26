@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Card, Image, Container, Loader } from 'semantic-ui-react';
+import { Card, Image, Container, Loader, Grid, Icon, Header } from 'semantic-ui-react';
 import { Opportunities } from '/imports/api/opportunities/opportunities';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -15,20 +15,62 @@ class Home extends React.Component {
         <Container>
           <Image centered src="http://mensho.weebly.com/uploads/1/9/6/3/19630481/1039141.png?882"/>
 
-          <Card centered>
-            <Card.Content>
-              <Card.Header>
-                Announcements
-              </Card.Header>
-              <Card.Meta>
-                02/29/3000
-              </Card.Meta>
-              <Card.Description>
-                This is a placeholder for "Announcements". There will be a second card that will be generated from the
-                database for "Upcoming Events".
-              </Card.Description>
-            </Card.Content>
-          </Card>
+          <Grid style={{ margin: '50px' }} verticalAlign='middle' textAlign='center' columns = {3} container>
+            <Grid.Column>
+              <Header as='h1' >Announcements</Header>
+              <Card centered>
+                <Card.Content>
+                  <Card.Header>
+                    Lava Lab Open!
+                  </Card.Header>
+                </Card.Content>
+              </Card>
+
+              <Card centered>
+                <Card.Content>
+                  <Card.Header>
+                    ICSpace cleaned
+                  </Card.Header>
+                </Card.Content>
+              </Card>
+
+              <Card centered>
+                <Card.Content>
+                  <Card.Header>
+                    Registration Available
+                  </Card.Header>
+                </Card.Content>
+              </Card>
+            </Grid.Column>
+
+            <Grid.Column>
+              <Header as='h1' >Upcoming Events</Header>
+              <Card centered>
+                <Card.Content>
+                  <Card.Header>
+                    Video Game Social
+                  </Card.Header>
+                </Card.Content>
+              </Card>
+
+              <Card centered>
+                <Card.Content>
+                  <Card.Header>
+                    Google Alum Speaker
+                  </Card.Header>
+                </Card.Content>
+              </Card>
+
+              <Card centered>
+                <Card.Content>
+                  <Card.Header>
+                    Slack Technologies
+                  </Card.Header>
+                </Card.Content>
+              </Card>
+            </Grid.Column>
+          </Grid>
+
         </Container>
     )
   }
