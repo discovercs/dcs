@@ -10,7 +10,8 @@ const CareersSchema = new SimpleSchema({
   id: { type: String },
   name: { type: String },
   description: { type: String },
-  interestIDs: { type: [String] },
+  interestIDs: { type: Array },
+  'interestIDs.$': { type: String },
   pic: { type: String },
 }, { tracker: Tracker });
 

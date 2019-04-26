@@ -17,12 +17,15 @@ class NavBar extends React.Component {
         </Menu.Item>
         {this.props.currentUser ? (
             [<Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home'>Home</Menu.Item>,
-              <Menu.Item>
+              <Menu.Item as={NavLink} activeClassName="active" exact to="/interests" key='interests'>
                   Discover
                   <Menu.Menu>
-                      <Menu.Item as={NavLink} activeClassName="active" exact to="/interests" key='interests'>Interests</Menu.Item>
-                      <Menu.Item as={NavLink} activeClassName="active" exact to="/careers" key='careers'>Careers</Menu.Item>
-                      <Menu.Item as={NavLink} activeClassName="active" exact to="/opportunities" key='opportunities'>Opportunities</Menu.Item>
+                      <Menu.Item as={NavLink} activeClassName="active" exact to="/interests"
+                                 key='interests'>Interests</Menu.Item>
+                      <Menu.Item as={NavLink} activeClassName="active" exact to="/careers"
+                                 key='careers'>Careers</Menu.Item>
+                      <Menu.Item as={NavLink} activeClassName="active" exact to="/opportunities"
+                                 key='opportunities'>Opportunities</Menu.Item>
                   </Menu.Menu>
               </Menu.Item>]
         ) : ''}
