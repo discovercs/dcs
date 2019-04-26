@@ -13,7 +13,7 @@ class Home extends React.Component {
     // return (this.props.ready) ? this.renderPage() : <Loader active>Mirabela needs to add opportunities</Loader>;
     return (
         <Container>
-          <Image centered src="http://mensho.weebly.com/uploads/1/9/6/3/19630481/1039141.png?882"/>
+          <Image centered fluid src="/images/iot2.jpg"/>
 
           <Grid style={{ margin: '50px' }} verticalAlign='middle' textAlign='center' columns = {3} container>
             <Grid.Column>
