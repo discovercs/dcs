@@ -17,18 +17,19 @@ class NavBar extends React.Component {
         </Menu.Item>
         {this.props.currentUser ? (
             [<Menu.Item as={NavLink} activeClassName="active" exact to="/home" key='home'>Home</Menu.Item>,
-              <Menu.Item as={NavLink} activeClassName="active" exact to="/interests" key='interests'>
-                  Discover
-                  <Menu.Menu>
-                      <Menu.Item as={NavLink} activeClassName="active" exact to="/interests"
-                                 key='interests'>Interests</Menu.Item>
-                      <Menu.Item as={NavLink} activeClassName="active" exact to="/careers"
-                                 key='careers'>Careers</Menu.Item>
-                      <Menu.Item as={NavLink} activeClassName="active" exact to="/opportunities"
-                                 key='opportunities'>Opportunities</Menu.Item>
-                      <Menu.Item as={NavLink} activeClassName="active" exact to="/friends"
-                                 key='friends'>Friends</Menu.Item>
-                  </Menu.Menu>
+              <Menu.Item key='discover'>
+                <Dropdown text="Discover">
+                  <Dropdown.Menu>
+                      <Dropdown.Item as={NavLink} activeClassName="active" exact to="/interests"
+                                 key='interests'>Interests</Dropdown.Item>
+                      <Dropdown.Item as={NavLink} activeClassName="active" exact to="/careers"
+                                 key='careers'>Careers</Dropdown.Item>
+                      <Dropdown.Item as={NavLink} activeClassName="active" exact to="/opportunities"
+                                 key='opportunities'>Opportunities</Dropdown.Item>
+                      <Dropdown.Item as={NavLink} activeClassName="active" exact to="/friends"
+                                 key='friends'>Friends</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               </Menu.Item>]
         ) : ''}
         {Roles.userIsInRole(Meteor.userId(), 'admin') ? (

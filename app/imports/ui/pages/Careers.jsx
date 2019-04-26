@@ -11,11 +11,6 @@ class Careers extends React.Component {
   render() {
     return (
         <div>
-           <Menu inverted widths={3}>
-               <Menu.Item activeClassName="active">Test1</Menu.Item>
-               <Menu.Item activeClassName="active">Test1</Menu.Item>
-               <Menu.Item activeClassName="active">Test1</Menu.Item>
-           </Menu>
             <Image src='https://www.dundas.com/Support/images/WordCloud1.png' fluid/>
         </div>
 
