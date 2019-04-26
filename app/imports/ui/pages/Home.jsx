@@ -10,21 +10,41 @@ import Cards from '../components/Card';
 class Home extends React.Component {
 
   render() {
-    return (this.props.ready) ? this.renderPage() : <Loader active>Mirabela needs to add opportunities</Loader>;
+    // return (this.props.ready) ? this.renderPage() : <Loader active>Mirabela needs to add opportunities</Loader>;
+    return (
+        <Container>
+          <Image centered src="http://mensho.weebly.com/uploads/1/9/6/3/19630481/1039141.png?882"/>
+
+          <Card centered>
+            <Card.Content>
+              <Card.Header>
+                Announcements
+              </Card.Header>
+              <Card.Meta>
+                02/29/3000
+              </Card.Meta>
+              <Card.Description>
+                This is a placeholder for "Announcements". There will be a second card that will be generated from the
+                database for "Upcoming Events".
+              </Card.Description>
+            </Card.Content>
+          </Card>
+        </Container>
+    )
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
-  renderPage() {
-    return (
-          <Container>
-            <Image centered src="http://mensho.weebly.com/uploads/1/9/6/3/19630481/1039141.png?882"/>
-
-            <Card.Group>
-              {this.props.cards.map((card, index) => <Cards key={index} card={card}/>)}
-            </Card.Group>
-          </Container>
-    );
-  }
+  // renderPage() {
+  //   return (
+  //         <Container>
+  //           <Image centered src="http://mensho.weebly.com/uploads/1/9/6/3/19630481/1039141.png?882"/>
+  //
+  //           <Card.Group>
+  //             {this.props.cards.map((card, index) => <Cards key={index} card={card}/>)}
+  //           </Card.Group>
+  //         </Container>
+  //   );
+  // }
 }
 
 /** Require an array of Cards documents in the props. */
