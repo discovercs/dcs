@@ -53,12 +53,17 @@ export default class Signup extends React.Component {
         last: last,
         year: year,
         gender: gender,
+        pic: '/images/def.png',
+        interestIDs: [''],
+        opportunityIDs: [''],
+        careerIDs: [''],
+        friendIDs: [''],
       },
     }, (err) => {
       if (err) {
         this.setState({ error: err.reason });
       } else {
-        // browserHistory.push('/login');
+  //
       }
     });
   }
