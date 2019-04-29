@@ -13,7 +13,7 @@ const InterestsSchema = new SimpleSchema({
     type: String,
     allowedValues: ['technical', 'subject', 'field'],
   },
-  pic: { type: String },
+  pic: { type: String, optional: true },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
