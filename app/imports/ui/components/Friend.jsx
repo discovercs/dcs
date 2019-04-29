@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, Image, Feed, Button } from 'semantic-ui-react';
+import { Card, Image, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Friend extends React.Component {
@@ -10,30 +10,20 @@ class Friend extends React.Component {
     return (
         <Card centered>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.contact.image} />
+            <Image floated='right' size='mini' src={this.props.friend.profile.pic} />
             <Card.Header>
-              {this.props.contact.firstName} {this.props.contact.lastName}
+              {this.props.friend.profile.first} {this.props.friend.profile.last}
             </Card.Header>
             <Card.Meta>
-              {this.props.contact.address}
+              {this.props.friend.profile.year}
             </Card.Meta>
             <Card.Description>
-              {this.props.contact.description}
+              Interests in Common
+              {this.props.interests.map((interest) => <Button>{interest.name}</Button>)}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Link to={`/edit/${this.props.contact._id}`}>Edit</Link>
-          </Card.Content>
-          <Card.Content extra>
-            <Feed>
-              {this.props.notes.map((note, index) => <Note key={index} note={note}/>)}
-            </Feed>
-          </Card.Content>
-          <Card.Content extra>
-            <AddNote owner={this.props.contact.owner} contactId={this.props.contact._id}/>
-          </Card.Content>
-          <Card.Content extra>
-            <Button className="ui basic" onClick={this.onClick}>Delete</Button>
+            <Button className="ui basic">Add Friend</Button>
           </Card.Content>
         </Card>
     );
@@ -43,6 +33,7 @@ class Friend extends React.Component {
 /** Require a document to be passed to this component. */
 Friend.propTypes = {
   friend: PropTypes.object.isRequired,
+  interests: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
