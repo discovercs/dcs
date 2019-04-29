@@ -11,7 +11,7 @@ class AddLanguages extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (
-        <Grid container>
+        <Grid container columns={2}>
             <Grid.Column>
                 Languages to be added
             </Grid.Column>
