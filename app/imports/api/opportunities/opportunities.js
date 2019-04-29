@@ -7,7 +7,6 @@ const Opportunities = new Mongo.Collection('Opportunities');
 
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const OpportunitiesSchema = new SimpleSchema({
-  id: { type: String },
   name: { type: String },
   description: { type: String },
   interestIDs: { type: Array },

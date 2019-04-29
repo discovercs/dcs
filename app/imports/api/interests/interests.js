@@ -7,7 +7,6 @@ const Interests = new Mongo.Collection('Interests');
 
 /** Create a schema to constrain the structure of documents associated with this collection. */
 const InterestsSchema = new SimpleSchema({
-  id: { type: String },
   name: { type: String },
   description: { type: String },
   type: {
