@@ -17,7 +17,7 @@ const OpportunitiesSchema = new SimpleSchema({
   'types.$': { type: String },
   date: { type: Date },
   year: { type: Number },
-  pic: { type: String },
+  pic: { type: String, optional: true },
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */
