@@ -6,13 +6,18 @@ import Interests from '/imports/api/interests/interests';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class LanguageItem extends React.Component {
+
+    handleClick(){
+
+    }
+
     render() {
         return (
             <Card>
                 <Card.Content>
                     <Card.Header>{this.props.interests.name}</Card.Header>
                     <Card.Description>{this.props.interests.description}</Card.Description>
-                    <Button>Add</Button>
+                    <Button onClick={this.handleClick}>Add</Button>
                 </Card.Content>
 
             </Card>

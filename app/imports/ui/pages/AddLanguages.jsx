@@ -1,10 +1,11 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Grid, Loader } from 'semantic-ui-react';
+import { Grid, Loader, Card } from 'semantic-ui-react';
 import { Interests } from '/imports/api/interests/interests';
 import Languages from '/imports/ui/components/LanguageItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
+import LanguageItem from "../components/LanguageItem";
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AddLanguages extends React.Component {
@@ -18,7 +19,9 @@ class AddLanguages extends React.Component {
     return (
         <Grid container columns={2}>
             <Grid.Column>
-                Languages to be added
+                <Card.Group>
+                {this.props.interests.map((index,int) => <LanguageItem key={index} int={int}/>)}
+                </Card.Group>
             </Grid.Column>
             <Grid.Column>
                 Users Languages
