@@ -19,8 +19,7 @@ if (Interests.find().count() === 0) {
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Interests', function publish() {
   if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Interests.find({ owner: username });
+    return Interests.find();
   }
   return this.ready();
 });

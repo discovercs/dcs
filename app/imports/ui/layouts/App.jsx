@@ -13,6 +13,10 @@ import Careers from '../pages/Careers';
 import Interests from '../pages/Interests';
 import Opportunities from '../pages/Opportunities';
 import Friends from '../pages/Friends';
+import AddLanguages from '../pages/AddLanguages'
+import AddSubjects from '../pages/AddSubjects'
+import AddField from '../pages/AddFields'
+import AddPersonal from '../pages/AddPersonal'
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -34,6 +38,10 @@ class App extends React.Component {
               <Route path="/signupinterests" component={SignupInterests}/>
               <ProtectedRoute path="/home" component={Home}/>
                 <ProtectedRoute path="/interests" component={Interests}/>
+                <ProtectedRoute path="/addlanguages" component={AddLanguages}/>
+                <ProtectedRoute path="/addsubjects" component={AddSubjects}/>
+                <ProtectedRoute path="/addfields" component={AddField}/>
+                <ProtectedRoute path="/addpersonal" component={AddPersonal}/>
                 <ProtectedRoute path="/careers" component={Careers}/>
                 <ProtectedRoute path="/opportunities" component={Opportunities}/>
                 <ProtectedRoute path="/friends" component={Friends}/>
