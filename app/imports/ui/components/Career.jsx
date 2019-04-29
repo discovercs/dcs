@@ -10,12 +10,12 @@ class Career extends React.Component {
     return (
         <Card centered>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.friend.profile.pic} />
+            <Image floated='right' size='mini' src={this.props.career} />
             <Card.Header>
-              {this.props.friend.profile.first} {this.props.friend.profile.last}
+              {this.props.career} {this.props.career}
             </Card.Header>
             <Card.Meta>
-              {this.props.friend.profile.year}
+              {this.props.career}
             </Card.Meta>
             <Card.Description>
               Interests in Common
@@ -32,7 +32,7 @@ class Career extends React.Component {
 
 /** Require a document to be passed to this component. */
 Career.propTypes = {
-  friend: PropTypes.object.isRequired,
+  career: PropTypes.object.isRequired,
   interests: PropTypes.array.isRequired,
 };
 
