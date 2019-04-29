@@ -13,7 +13,7 @@ class Interests extends React.Component {
     return (
         <Segment.Group>
             <Segment.Group horizontal>
-               <Segment stretched><Link to='/addlanguages'><Button content="Languages" /></Link>
+               <Segment><Link to='/addlanguages'><Button content="Languages" /></Link>
                 <List as='ol'>
                     <List.Item as='li' value='-'>C</List.Item>
                     <List.Item as='li' value='-'>C++</List.Item>
@@ -21,7 +21,7 @@ class Interests extends React.Component {
                     <List.Item as='li' value='-'>JavaScript</List.Item>
                 </List>
                </Segment>
-                <Segment stretched><Link to='/addsubjects'><Button content="Subjects" /></Link>
+                <Segment><Link to='/addsubjects'><Button content="Subjects" /></Link>
                     <List as='ol'>
                         <List.Item as='li' value='-'>Biology</List.Item>
                         <List.Item as='li' value='-'>Art</List.Item>
@@ -31,7 +31,7 @@ class Interests extends React.Component {
                 </Segment>
             </Segment.Group>
             <Segment.Group horizontal>
-                <Segment stretched><Link to='/addfields'><Button content="Fields" /></Link>
+                <Segment><Link to='/addfields'><Button content="Fields" /></Link>
                     <List as='ol'>
                         <List.Item as='li' value='-'>Data Science</List.Item>
                         <List.Item as='li' value='-'>Computer Security</List.Item>
@@ -39,7 +39,7 @@ class Interests extends React.Component {
                         <List.Item as='li' value='-'>Web Development</List.Item>
                     </List>
                 </Segment>
-                <Segment stretched><Link to='/addpersonal'><Button content="Personal" /></Link>
+                <Segment><Link to='/addpersonal'><Button content="Personal" /></Link>
                     <List as='ol'>
                         <List.Item as='li' value='-'>Team Collaborator</List.Item>
                         <List.Item as='li' value='-'>Leadership Roles</List.Item>
