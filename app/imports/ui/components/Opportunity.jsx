@@ -10,14 +10,16 @@ class Opportunity extends React.Component {
     return (
         <Card centered>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.career.pic} />
             <Card.Header>
-              {this.props.career.name}
+              {this.props.opportunities.name}
             </Card.Header>
             <Card.Meta>
-              {this.props.career.description.substring(0, 159)}
+              {this.props.opportunities.types} {this.props.opportunities.date}
             </Card.Meta>
-            <Card.Description> /* todo: only list interests associated with career */
+            <Card.Description>
+              {this.props.opportunities.description}
+            </Card.Description>
+            <Card.Description> /* TODO: only list interests associated with opportunities */
               Matching Interests
               {this.props.interests.map((interest) => <Button>{interest.name}</Button>)}
             </Card.Description>
@@ -32,7 +34,7 @@ class Opportunity extends React.Component {
 
 /** Require a document to be passed to this component. */
 Opportunity.propTypes = {
-  career: PropTypes.object.isRequired,
+  opportunities: PropTypes.object.isRequired,
   interests: PropTypes.array.isRequired,
 };
 
