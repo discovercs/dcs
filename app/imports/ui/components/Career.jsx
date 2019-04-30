@@ -10,20 +10,20 @@ class Career extends React.Component {
     return (
         <Card centered>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.career} />
+            <Image floated='right' size='mini' src={this.props.career.pic} />
             <Card.Header>
-              {this.props.career} {this.props.career}
+              {this.props.career.name}
             </Card.Header>
             <Card.Meta>
-              {this.props.career}
+              {this.props.career.description.substring(0, 159)}
             </Card.Meta>
             <Card.Description>
-              Interests in Common
+              Matching Interests
               {this.props.interests.map((interest) => <Button>{interest.name}</Button>)}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Button className="ui basic">Add Friend</Button>
+            <Button className="ui basic">Learn More</Button> <Button className="ui basic">Add to Profile</Button>
           </Card.Content>
         </Card>
     );
