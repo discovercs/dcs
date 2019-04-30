@@ -7,6 +7,15 @@ import { Card, Container, Grid, Header, Menu, Input, Button, Icon, Dropdown, Lis
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Opportunities extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick() {
+    // TODO: Filter functionality for Opportunities
+  }
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     return (
