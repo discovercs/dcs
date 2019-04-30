@@ -17,7 +17,7 @@ class Career extends React.Component {
             <Card.Meta>
               {this.props.career.description.substring(0, 159)}
             </Card.Meta>
-            <Card.Description>
+            <Card.Description> /* todo: only list interests associated with career */
               Matching Interests
               {this.props.interests.map((interest) => <Button>{interest.name}</Button>)}
             </Card.Description>
