@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Button} from 'semantic-ui-react';
+import {Card, Button, Image} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import {withRouter, Link} from 'react-router-dom';
 import Interests from '/imports/api/interests/interests';
@@ -14,6 +14,7 @@ class InterestItem extends React.Component {
     render() {
         return (
             <Card>
+                <Image src={this.props.interests.pic} />
                 <Card.Content>
                     <Card.Header>{this.props.interests.name}</Card.Header>
                     <Card.Description>{this.props.interests.description}</Card.Description>
