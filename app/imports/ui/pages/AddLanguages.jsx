@@ -34,8 +34,6 @@ class AddLanguages extends React.Component {
 
 }
 
-console.log(AddLanguages.languages);
-
 AddLanguages.propTypes = {
     interests: PropTypes.array.isRequired,
     ready: PropTypes.bool.isRequired,
