@@ -5,7 +5,7 @@ import {withRouter, Link} from 'react-router-dom';
 import Interests from '/imports/api/interests/interests';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
-class LanguageItem extends React.Component {
+class InterestItem extends React.Component {
 
     handleClick(){
 
@@ -31,4 +31,4 @@ Interests.propTypes = {
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
-export default withRouter(LanguageItem);
+export default withRouter(InterestItem);
