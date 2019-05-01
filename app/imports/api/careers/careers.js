@@ -9,8 +9,8 @@ const Careers = new Mongo.Collection('Careers');
 const CareersSchema = new SimpleSchema({
   name: { type: String },
   description: { type: String },
-  interestIDs: { type: Array },
-  'interestIDs.$': { type: String },
+  interestNames: { type: Array },
+  'interestNames.$': { type: String },
   pic: { type: String, optional: true },
 }, { tracker: Tracker });
 
