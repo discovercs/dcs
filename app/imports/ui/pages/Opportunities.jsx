@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '/imports/api/stuff/stuff';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Card, Container, Grid, Header, Menu, Input, Button, Icon, Dropdown, List } from 'semantic-ui-react';
+import { Opportunity } from '../../api/opportunities/opportunities';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Opportunities extends React.Component {
