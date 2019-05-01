@@ -13,7 +13,7 @@ const OpportunitiesSchema = new SimpleSchema({
   'interestNames.$': { type: String },
   careerNames: { type: Array, optional: true  },
   'careerNames.$': { type: String },
-  type: { type: Array },
+  type: { type: String },
   'type.$': {
     type: String,
     allowedValues: ['internship', 'scholarship', 'event']

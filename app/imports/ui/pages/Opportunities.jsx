@@ -14,7 +14,7 @@ class Opportunities extends React.Component {
   }
 
   onClick() {
-    // TODO: Filter functionality for Opportunities
+    // let input =
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
