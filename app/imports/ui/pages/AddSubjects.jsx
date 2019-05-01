@@ -15,6 +15,15 @@ class AddSubjects extends React.Component {
 
     /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
     renderPage() {
+        let arr = [];
+        for (let i = 0; i < this.props.accountInterests.length; i++) {
+            let a = this.props.accountInterests[i];
+            let d = this.props.interests.find( (interest) => interest.name === a );
+            if (d!=undefined) {
+                arr.push(d);
+            }
+        }
+        let test = arr.length!=0;
         return (
             <Grid container columns={2}>
                 <Grid.Column>
@@ -26,6 +35,9 @@ class AddSubjects extends React.Component {
                 </Grid.Column>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Users Fields</Header>
+                    <Card.Group>
+                        {arr.map((interests) => test ? (<InterestItem key={`${interests._id}2`} interests={interests}/>) : '')}
+                    </Card.Group>
                 </Grid.Column>
             </Grid>
         );
@@ -35,6 +47,7 @@ class AddSubjects extends React.Component {
 
 AddSubjects.propTypes = {
     interests: PropTypes.array.isRequired,
+    accountInterests: PropTypes.array.isRequired,
     ready: PropTypes.bool.isRequired,
 };
 
@@ -44,6 +57,7 @@ export default withTracker(() => {
     const subscription = Meteor.subscribe('Interests');
     return {
         interests: Interests.find({type: "subject"}).fetch(),
+        accountInterests: Meteor.user() ? Meteor.user().profile.interestNames : [""],
         ready: subscription.ready(),
     };
 })(AddSubjects);
