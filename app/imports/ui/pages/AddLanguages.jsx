@@ -20,6 +20,8 @@ class AddLanguages extends React.Component {
     renderPage() {
         // console.log(this.props.accountInterests);
         let arr = [];
+        let arr2 = this.props.interests;
+        console.log(arr2);
         for (let i = 0; i < this.props.accountInterests.length; i++) {
             let a = this.props.accountInterests[i];
             // console.log(a);
@@ -29,14 +31,22 @@ class AddLanguages extends React.Component {
                 arr.push(d);
             }
         }
+        for(let i = 0; i < arr.length; i++){
+            for(let j = 0;j < arr2.length;j++){
+                if(arr2[j].name === arr[i].name){
+                    arr2.splice(j,1);
+                }
+            }
+        }
         let test = arr.length!=0;
+        let test2 = arr2.length!=0;
         // console.log(arr);
         return (
             <Grid container columns={2}>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Languages</Header>
                     <Card.Group>
-                        {this.props.interests.map((interests) => <InterestItem key={interests._id} interests={interests}/>)}
+                        {arr2.map((interests) => test2 ? <InterestItem key={interests._id} interests={interests}/> : '')}
                     </Card.Group>
                 </Grid.Column>
                 <Grid.Column>

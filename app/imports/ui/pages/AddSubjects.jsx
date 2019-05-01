@@ -16,6 +16,7 @@ class AddSubjects extends React.Component {
     /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
     renderPage() {
         let arr = [];
+        let arr2 = this.props.interests;
         for (let i = 0; i < this.props.accountInterests.length; i++) {
             let a = this.props.accountInterests[i];
             let d = this.props.interests.find( (interest) => interest.name === a );
@@ -23,14 +24,21 @@ class AddSubjects extends React.Component {
                 arr.push(d);
             }
         }
+        for(let i = 0; i < arr.length; i++){
+            for(let j = 0;j < arr2.length;j++){
+                if(arr2[j].name === arr[i].name){
+                    arr2.splice(j,1);
+                }
+            }
+        }
         let test = arr.length!=0;
+        let test2 = arr2.length!=0;
         return (
             <Grid container columns={2}>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Fields</Header>
                     <Card.Group>
-                        {this.props.interests.map((interests) => <InterestItem key={interests._id}
-                                                                               interests={interests}/>)}
+                        {arr2.map((interests) => test2 ? <InterestItem key={interests._id} interests={interests}/> : '')}
                     </Card.Group>
                 </Grid.Column>
                 <Grid.Column>
