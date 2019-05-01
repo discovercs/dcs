@@ -21,7 +21,7 @@ class AddLanguages extends React.Component {
         // console.log(this.props.accountInterests);
         let arr = [];
         let arr2 = this.props.interests;
-        console.log(arr2);
+        // console.log(arr2);
         for (let i = 0; i < this.props.accountInterests.length; i++) {
             let a = this.props.accountInterests[i];
             // console.log(a);
@@ -46,13 +46,13 @@ class AddLanguages extends React.Component {
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Languages</Header>
                     <Card.Group>
-                        {arr2.map((interests) => test2 ? <InterestItem key={interests._id} interests={interests}/> : '')}
+                        {arr2.map((interests) => test2 ? <InterestItem key={interests._id} interests={interests} owned={false}/> : '')}
                     </Card.Group>
                 </Grid.Column>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Users Languages</Header>
                     <Card.Group>
-                        {arr.map((interests) => test ? (<InterestItem key={`${interests._id}2`} interests={interests}/>) : '')}
+                        {arr.map((interests) => test ? (<InterestItem key={`${interests._id}2`} interests={interests} owned={true}/>) : '')}
                     </Card.Group>
                 </Grid.Column>
             </Grid>

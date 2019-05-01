@@ -38,13 +38,13 @@ class AddFields extends React.Component {
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Fields</Header>
                     <Card.Group>
-                        {arr2.map((interests) => test2 ? <InterestItem key={interests._id} interests={interests}/> : '')}
+                        {arr2.map((interests) => test2 ? <InterestItem key={interests._id} interests={interests} owned={false}/> : '')}
                     </Card.Group>
                 </Grid.Column>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Users Fields</Header>
                     <Card.Group>
-                        {arr.map((interests) => test ? (<InterestItem key={`${interests._id}2`} interests={interests}/>) : '')}
+                        {arr.map((interests) => test ? (<InterestItem key={`${interests._id}2`} interests={interests} owned={true}/>) : '')}
                     </Card.Group>
                 </Grid.Column>
             </Grid>
