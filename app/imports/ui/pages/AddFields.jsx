@@ -34,7 +34,7 @@ class AddFields extends React.Component {
         let test = arr.length!=0;
         let test2 = arr2.length!=0;
         return (
-            <Grid container columns={2} centered cell>
+            <Grid container columns={2} centered celled>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Fields</Header>
                     <Card.Group>
