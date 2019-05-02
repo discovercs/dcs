@@ -2,9 +2,16 @@ import React from 'react';
 import _ from 'lodash'
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Card, Container, Grid, Header, Dropdown, List, Search } from 'semantic-ui-react';
+import { Card, Container, Grid, Header, Dropdown, List, Search, Label } from 'semantic-ui-react';
 import { Opportunities } from '/imports/api/opportunities/opportunities';
 import PropTypes from 'prop-types';
+
+const resultRenderer = ({ name }) => <Label content={name} />
+
+resultRenderer.propTypes = {
+  name: PropTypes.string,
+  description: PropTypes.string,
+}
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListOpportunities extends React.Component {
@@ -28,7 +35,7 @@ class ListOpportunities extends React.Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(Opportunities, isMatch),
+        results: _.filter(this.props.opportunities, isMatch),
       })
     }, 300)
   }
@@ -36,7 +43,7 @@ class ListOpportunities extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     const { isLoading, value, results } = this.state
-
+    console.log(results)
     return (
        <div>
          <Container>
@@ -51,8 +58,9 @@ class ListOpportunities extends React.Component {
                        onResultSelect={this.handleResultSelect}
                        onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
                        results={results}
+                       resultRenderer={resultRenderer}
                        value={value}
-                       {...this.props.opportunities}
+                       {...this.props}
                    />
                  </List.Item>
 
@@ -108,47 +116,9 @@ class ListOpportunities extends React.Component {
              </Grid.Column>
 
              <Grid.Column>
-               <Card centered>
-                 <Card.Content>
-                   <Card.Header>
-                     Raytheon Internship
-                   </Card.Header>
-                   <Card.Meta>
-                     Summer 2019
-                   </Card.Meta>
-                   <Card.Description>
-                     Description
-                   </Card.Description>
-                 </Card.Content>
-               </Card>
 
-               <Card centered>
-                 <Card.Content>
-                   <Card.Header>
-                     NSA Internship
-                   </Card.Header>
-                   <Card.Meta>
-                     Summer 2019
-                   </Card.Meta>
-                   <Card.Description>
-                     Description
-                   </Card.Description>
-                 </Card.Content>
-               </Card>
 
-               <Card centered>
-                 <Card.Content>
-                   <Card.Header>
-                     Google Scholarship
-                   </Card.Header>
-                   <Card.Meta>
-                     Summer 2020
-                   </Card.Meta>
-                   <Card.Description>
-                     Description
-                   </Card.Description>
-                 </Card.Content>
-               </Card>
+
              </Grid.Column>
            </Grid>
          </Container>
