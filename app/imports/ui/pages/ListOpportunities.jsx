@@ -1,13 +1,13 @@
 import React from 'react';
 import _ from 'lodash'
 import { Meteor } from 'meteor/meteor';
-import { Stuffs } from '/imports/api/stuff/stuff';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Card, Container, Grid, Header, Dropdown, List, Search } from 'semantic-ui-react';
-import { opportunities } from '../../api/opportunities/opportunities';
+import { Opportunities } from '/imports/api/opportunities/opportunities';
+import PropTypes from 'prop-types';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
-class Opportunities extends React.Component {
+class ListOpportunities extends React.Component {
 
   componentWillMount() {
     this.resetComponent()
@@ -28,7 +28,7 @@ class Opportunities extends React.Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(opportunities, isMatch),
+        results: _.filter(Opportunities, isMatch),
       })
     }, 300)
   }
@@ -52,7 +52,7 @@ class Opportunities extends React.Component {
                        onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
                        results={results}
                        value={value}
-                       {...this.props}
+                       {...this.props.opportunities}
                    />
                  </List.Item>
 
@@ -158,4 +158,17 @@ class Opportunities extends React.Component {
 
 }
 
-export default (Opportunities);
+ListOpportunities.propTypes = {
+  opportunities: PropTypes.array.isRequired,
+  accountOpportunities: PropTypes.array.isRequired,
+};
+
+/** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
+export default withTracker(() => {
+  const subscription = Meteor.subscribe('Opportunities');
+  return {
+    opportunities: Opportunities.find({}).fetch(),
+    accountOpportunities: Meteor.user() ? Meteor.user().profile.opportunityIDs : [""],
+    ready: (subscription.ready()),
+  };
+})(ListOpportunities);

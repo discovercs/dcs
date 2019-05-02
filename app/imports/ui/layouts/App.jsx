@@ -11,7 +11,7 @@ import ListStuffAdmin from '../pages/ListStuffAdmin';
 import Home from '../pages/Home';
 import AddCareers from '../pages/AddCareers';
 import Interests from '../pages/Interests';
-import Opportunities from '../pages/Opportunities';
+import ListOpportunities from '../pages/ListOpportunities';
 import Friends from '../pages/Friends';
 import AddLanguages from '../pages/AddLanguages'
 import AddSubjects from '../pages/AddSubjects'
@@ -44,7 +44,7 @@ class App extends React.Component {
                 <ProtectedRoute path="/addsubjects" component={AddSubjects}/>
                 <ProtectedRoute path="/addfields" component={AddField}/>
                 <ProtectedRoute path="/careers" component={AddCareers}/>
-                <ProtectedRoute path="/opportunities" component={Opportunities}/>
+                <ProtectedRoute path="/listopportunities" component={ListOpportunities}/>
                 <ProtectedRoute path="/friends" component={Friends}/>
                 <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>

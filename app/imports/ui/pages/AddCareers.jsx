@@ -1,12 +1,10 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
-import {Stuffs} from '/imports/api/stuff/stuff';
 import {withTracker} from 'meteor/react-meteor-data';
 import {Careers} from '/imports/api/careers/careers';
 import {Grid, Container, Card, Image, Divider, Header} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Career from '/imports/ui/components/Career';
-import { NavLink } from 'react-router-dom';
 
 /* eslint-disable no-console */
 

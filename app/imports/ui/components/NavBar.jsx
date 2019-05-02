@@ -24,7 +24,7 @@ class NavBar extends React.Component {
                                  key='interests'>Interests</Dropdown.Item>
                       <Dropdown.Item as={NavLink} activeClassName="active" exact to="/careers"
                                  key='careers'>Careers</Dropdown.Item>
-                      <Dropdown.Item as={NavLink} activeClassName="active" exact to="/opportunities"
+                      <Dropdown.Item as={NavLink} activeClassName="active" exact to="/listopportunities"
                                  key='opportunities'>Opportunities</Dropdown.Item>
                       <Dropdown.Item as={NavLink} activeClassName="active" exact to="/friends"
                                  key='friends'>Friends</Dropdown.Item>
