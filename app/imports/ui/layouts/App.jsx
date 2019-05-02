@@ -24,6 +24,7 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import SignupInterests from '../pages/SignupInterests';
 import Profile from '../pages/Profile';
+import Temp from '../pages/Temp';
 
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -45,7 +46,7 @@ class App extends React.Component {
                 <ProtectedRoute path="/addfields" component={AddField}/>
                 <ProtectedRoute path="/addpersonal" component={AddPersonal}/>
                 <ProtectedRoute path="/careers" component={Careers}/>
-                <ProtectedRoute path="/opportunities" component={Opportunities}/>
+                <ProtectedRoute path="/opportunities" component={Op}/>
                 <ProtectedRoute path="/friends" component={Friends}/>
                 <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>
