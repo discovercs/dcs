@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import Home from '../pages/Home';
-import Careers from '../pages/Careers';
+import AddCareers from '../pages/AddCareers';
 import Interests from '../pages/Interests';
 import Opportunities from '../pages/Opportunities';
 import Friends from '../pages/Friends';
@@ -44,7 +44,7 @@ class App extends React.Component {
                 <ProtectedRoute path="/addsubjects" component={AddSubjects}/>
                 <ProtectedRoute path="/addfields" component={AddField}/>
                 <ProtectedRoute path="/addpersonal" component={AddPersonal}/>
-                <ProtectedRoute path="/careers" component={Careers}/>
+                <ProtectedRoute path="/careers" component={AddCareers}/>
                 <ProtectedRoute path="/opportunities" component={Opportunities}/>
                 <ProtectedRoute path="/friends" component={Friends}/>
                 <ProtectedRoute path="/profile" component={Profile}/>
