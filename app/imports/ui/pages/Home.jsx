@@ -13,8 +13,7 @@ class Home extends React.Component {
     // return (this.props.ready) ? this.renderPage() : <Loader active>Mirabela needs to add opportunities</Loader>;
     return (
         <Container>
-          <Image centered fluid src="/images/iot2.jpg"/>
-
+        <Container style={{height:'300px', overflow: 'hidden'}}><Image centered fluid src="/images/iot2.jpg"/></Container>
           <Grid style={{ margin: '50px' }} verticalAlign='middle' textAlign='center' columns = {3} container>
             <Grid.Column>
               <Header as='h1' >Announcements</Header>
