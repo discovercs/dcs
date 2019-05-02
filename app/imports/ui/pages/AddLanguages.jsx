@@ -42,7 +42,7 @@ class AddLanguages extends React.Component {
         let test2 = arr2.length!=0;
         // console.log(arr);
         return (
-            <Grid container columns={2}>
+            <Grid container columns={2} celled centered>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Languages</Header>
                     <Card.Group>

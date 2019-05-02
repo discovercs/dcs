@@ -1,6 +1,6 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
-import { Card, Image, Button } from 'semantic-ui-react';
+import { Card, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -31,14 +31,13 @@ class Career extends React.Component {
     return (
         <Card centered>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.career.pic} />
             <Card.Header>
               {this.props.career.name}
             </Card.Header>
             <Card.Meta>
               {this.props.career.description.substring(0, 159)}
             </Card.Meta>
-            <Card.Description> /* todo: only list interests associated with career */
+            <Card.Description>
               Matching Interests
             </Card.Description>
           </Card.Content>
