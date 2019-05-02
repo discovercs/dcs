@@ -1,6 +1,6 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
-import { Card, Button } from 'semantic-ui-react';
+import { Card, Button, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -31,6 +31,7 @@ class Career extends React.Component {
     return (
         <Card centered>
           <Card.Content>
+            <Image size='medium' src={this.props.career.pic} />
             <Card.Header>
               {this.props.career.name}
             </Card.Header>

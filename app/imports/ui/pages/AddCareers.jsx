@@ -6,6 +6,7 @@ import {Careers} from '/imports/api/careers/careers';
 import {Grid, Container, Card, Image, Divider, Header} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Career from '/imports/ui/components/Career';
+import { NavLink } from 'react-router-dom';
 
 /* eslint-disable no-console */
 
@@ -36,19 +37,19 @@ class AddCareers extends React.Component {
         let test = (arr.length!=0);
         let test2 = (arr2.length!=0);
         // end of stuff for listing
-        
+
 
         return (
-            <Grid container columns={2} celled centered>
+            <Grid columns={2} celled centered>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Careers</Header>
-                    <Card.Group>
+                    <Card.Group itemsPerRow={2}>
                         {arr2.map((career) => test2 ? <Career key={career._id} career={career} owned={false}/> : '')}
                     </Card.Group>
                 </Grid.Column>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Users Careers</Header>
-                    <Card.Group>
+                    <Card.Group itemsPerRow={2}>
                         {arr.map((career) => test ? (<Career key={`${career._id}2`} career={career} owned={true}/>) : '')}
                     </Card.Group>
                 </Grid.Column>

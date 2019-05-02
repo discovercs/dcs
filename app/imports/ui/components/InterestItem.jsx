@@ -34,7 +34,7 @@ class InterestItem extends React.Component {
     render() {
         return (
             <Card>
-                <Image src={this.props.interests.pic} />
+                <Image size='medium' src={this.props.interests.pic} />
                 <Card.Content>
                     <Card.Header>{this.props.interests.name}</Card.Header>
                     <Card.Description>{this.props.interests.description}</Card.Description>
