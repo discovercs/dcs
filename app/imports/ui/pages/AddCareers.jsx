@@ -36,7 +36,7 @@ class AddCareers extends React.Component {
         let test = (arr.length!=0);
         let test2 = (arr2.length!=0);
         // end of stuff for listing
-
+        
 
         return (
             <Grid container columns={2} celled centered>
