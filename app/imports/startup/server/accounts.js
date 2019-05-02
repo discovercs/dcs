@@ -16,9 +16,9 @@ function createUser(email, password, first, last, year, gender, pic, role) {
       year: year,
       gender: gender,
       pic: pic,
-      interestIDs: [''],
-      opportunityIDs: [''],
-      careerIDs: [''],
+      interestNames: [''],
+      opportunityNames: [''],
+      careerNames: [''],
       friendIDs: [''],
     },
   });
