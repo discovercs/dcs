@@ -18,11 +18,7 @@ if (Careers.find().count() === 0) {
 
 /** This subscription publishes only the documents associated with the logged in user */
 Meteor.publish('Careers', function publish() {
-  if (this.userId) {
-    const username = Meteor.users.findOne(this.userId).username;
-    return Careers.find({ owner: username });
-  }
-  return this.ready();
+    return Careers.find();
 });
 
 /** This subscription publishes all documents regardless of user, but only if the logged in user is the Admin. */

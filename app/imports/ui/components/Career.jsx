@@ -1,29 +1,48 @@
 import React from 'react';
-import { Card, Image, Button } from 'semantic-ui-react';
+import {Meteor} from 'meteor/meteor';
+import { Card, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Career extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.handleClickAdd = this.handleClickAdd.bind(this);
+        this.handleClickRemove = this.handleClickRemove.bind(this);
+        this.formRef = null;
+    }
+
+
+    handleClickAdd() {
+        if (confirm('Do you really want to add this interest?')) {
+            Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {"profile.careerNames": this.props.career.name}});
+        }
+    }
+
+    handleClickRemove() {
+        if (confirm('Do you really want to remove this interest?')) {
+            Meteor.users.update({_id: Meteor.userId()}, {$pull: {"profile.careerNames": this.props.career.name}});
+        }
+    }
+
   render() {
     return (
         <Card centered>
           <Card.Content>
-            <Image floated='right' size='mini' src={this.props.career.pic} />
             <Card.Header>
               {this.props.career.name}
             </Card.Header>
             <Card.Meta>
               {this.props.career.description.substring(0, 159)}
             </Card.Meta>
-            <Card.Description> /* todo: only list interests associated with career */
+            <Card.Description>
               Matching Interests
-              {this.props.interests.map((interest) => <Button>{interest.name}</Button>)}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Button className="ui basic">Learn More</Button> <Button className="ui basic">Add to Profile</Button>
+              {this.props.owned ? (<Button onClick={this.handleClickRemove}>Remove</Button>) : (<Button onClick={this.handleClickAdd}>Add</Button>)}
           </Card.Content>
         </Card>
     );
@@ -33,7 +52,8 @@ class Career extends React.Component {
 /** Require a document to be passed to this component. */
 Career.propTypes = {
   career: PropTypes.object.isRequired,
-  interests: PropTypes.array.isRequired,
+    owned: PropTypes.bool.isRequired
+  //interests: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
