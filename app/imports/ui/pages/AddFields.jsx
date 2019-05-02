@@ -1,15 +1,18 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
-import {Grid, Loader, Card, Header} from 'semantic-ui-react';
+import {Grid, Loader, Card, Header, Menu} from 'semantic-ui-react';
 import {Interests} from '/imports/api/interests/interests';
 import {withTracker} from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import InterestItem from '/imports/ui/components/InterestItem';
+import { Link } from 'react-router-dom';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AddFields extends React.Component {
 
-    render() {
+  state = { activeItem: 'fields' };
+
+  render() {
         return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
     }
 
@@ -33,21 +36,33 @@ class AddFields extends React.Component {
         }
         let test = arr.length!=0;
         let test2 = arr2.length!=0;
-        return (
-            <Grid container columns={2} centered celled>
+      const { activeItem } = this.state;
+      return (
+            <div>
+              <Menu tabular>
+                <Menu.Item>Find Interests:</Menu.Item>
+                <Menu.Item as={Link} active={activeItem === 'technologies'} exact
+                           to="/addlanguages" key='Technologies'>Technologies</Menu.Item>
+                <Menu.Item as={Link} active={activeItem === 'subjects'} exact
+                           to="/addsubjects" key='subjects'>Subjects</Menu.Item>
+                <Menu.Item as={Link} active={activeItem === 'fields'} exact
+                           to="/addfields" key='fields'>Fields</Menu.Item>
+              </Menu>
+            <Grid columns={2} celled>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Fields</Header>
-                    <Card.Group>
+                    <Card.Group itemsPerRow={2}>
                         {arr2.map((interests) => test2 ? <InterestItem key={interests._id} interests={interests} owned={false}/> : '')}
                     </Card.Group>
                 </Grid.Column>
                 <Grid.Column>
                     <Header as="h2" textAlign="center">Users Fields</Header>
-                    <Card.Group>
+                    <Card.Group itemsPerRow={2}>
                         {arr.map((interests) => test ? (<InterestItem key={`${interests._id}2`} interests={interests} owned={true}/>) : '')}
                     </Card.Group>
                 </Grid.Column>
             </Grid>
+            </div>
         );
     }
 
@@ -65,7 +80,7 @@ export default withTracker(() => {
     const subscription = Meteor.subscribe('Interests');
     return {
         interests: Interests.find({type: "field"}).fetch(),
-        accountInterests: Meteor.user() ? Meteor.user().profile.interestNames : [""],
+        accountInterests: Meteor.user() ? Meteor.user().profile.interestNames : [''],
         ready: subscription.ready(),
     };
 })(AddFields);

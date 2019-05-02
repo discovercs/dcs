@@ -1,16 +1,19 @@
 import React from 'react';
 import {Meteor} from 'meteor/meteor';
-import {Grid, Loader, Card, Header} from 'semantic-ui-react';
+import {Grid, Loader, Card, Header, Menu} from 'semantic-ui-react';
 import {Interests} from '/imports/api/interests/interests';
 import {Accounts} from 'meteor/accounts-base';
 import {withTracker} from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import InterestItem from '/imports/ui/components/InterestItem';
+import { Link } from 'react-router-dom';
 
 /* eslint-disable no-console */
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class AddLanguages extends React.Component {
+
+  state = { activeItem: 'technologies' };
 
     render() {
         return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
@@ -41,21 +44,33 @@ class AddLanguages extends React.Component {
         let test = arr.length!=0;
         let test2 = arr2.length!=0;
         // console.log(arr);
-        return (
-            <Grid container columns={2} centered celled>
+      const { activeItem } = this.state;
+      return (
+            <div>
+            <Menu tabular>
+              <Menu.Item>Find Interests:</Menu.Item>
+              <Menu.Item as={Link} active={activeItem === 'technologies'} exact
+                         to="/addlanguages" key='Technologies'>Technologies</Menu.Item>
+              <Menu.Item as={Link} active={activeItem === 'subjects'} exact
+                         to="/addsubjects" key='subjects'>Subjects</Menu.Item>
+              <Menu.Item as={Link} active={activeItem === 'fields'} exact
+                         to="/addfields" key='fields'>Fields</Menu.Item>
+            </Menu>
+            <Grid columns={2} celled centered>
                 <Grid.Column>
-                    <Header as="h2" textAlign="center">Languages</Header>
-                    <Card.Group>
+                    <Header as="h2" textAlign="center">Languages and Technologies</Header>
+                    <Card.Group itemsPerRow={2}>
                         {arr2.map((interests) => test2 ? <InterestItem key={interests._id} interests={interests} owned={false}/> : '')}
                     </Card.Group>
                 </Grid.Column>
                 <Grid.Column>
-                    <Header as="h2" textAlign="center">Users Languages</Header>
-                    <Card.Group>
+                    <Header as="h2" textAlign="center">Users Interests</Header>
+                    <Card.Group itemsPerRow={2}>
                         {arr.map((interests) => test ? (<InterestItem key={`${interests._id}2`} interests={interests} owned={true}/>) : '')}
                     </Card.Group>
                 </Grid.Column>
             </Grid>
+            </div>
         );
     }
 

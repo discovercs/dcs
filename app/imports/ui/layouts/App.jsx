@@ -9,14 +9,13 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
 import Home from '../pages/Home';
-import Careers from '../pages/Careers';
+import AddCareers from '../pages/AddCareers';
 import Interests from '../pages/Interests';
 import Opportunities from '../pages/Opportunities';
 import Friends from '../pages/Friends';
 import AddLanguages from '../pages/AddLanguages'
 import AddSubjects from '../pages/AddSubjects'
 import AddField from '../pages/AddFields'
-import AddPersonal from '../pages/AddPersonal'
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import Signin from '../pages/Signin';
@@ -44,9 +43,8 @@ class App extends React.Component {
                 <ProtectedRoute path="/addlanguages" component={AddLanguages}/>
                 <ProtectedRoute path="/addsubjects" component={AddSubjects}/>
                 <ProtectedRoute path="/addfields" component={AddField}/>
-                <ProtectedRoute path="/addpersonal" component={AddPersonal}/>
-                <ProtectedRoute path="/careers" component={Careers}/>
-                <ProtectedRoute path="/opportunities" component={Op}/>
+                <ProtectedRoute path="/careers" component={AddCareers}/>
+                <ProtectedRoute path="/opportunities" component={Opportunities}/>
                 <ProtectedRoute path="/friends" component={Friends}/>
                 <ProtectedRoute path="/profile" component={Profile}/>
               <ProtectedRoute path="/edit/:_id" component={EditStuff}/>

@@ -16,10 +16,10 @@ function createUser(email, password, first, last, year, gender, pic, role, inter
       year: year,
       gender: gender,
       pic: pic,
-      interestNames: interestNames,
-      opportunityNames: [''],
-      careerNames: [''],
-      friendIDs: [''],
+      interestNames: [],
+      opportunityIDs: [],
+      careerNames: [],
+      friendIDs: [],
     },
   });
   if (role === 'admin') {
