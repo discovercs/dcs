@@ -13,7 +13,10 @@ class Home extends React.Component {
     // return (this.props.ready) ? this.renderPage() : <Loader active>Mirabela needs to add opportunities</Loader>;
     return (
         <Container>
-        <Container style={{height:'300px', overflow: 'hidden'}}><Image centered fluid src="/images/iot2.jpg"/></Container>
+        <Container style={{height:'300px', overflow: 'hidden'}}>
+          <Image centered fluid src="/images/iot2.jpg"/>
+        </Container>
+          <Header as='h1' textAlign="center">Welcome, {this.props.currentUser.first}!</Header>
           <Grid style={{ margin: '50px' }} verticalAlign='middle' textAlign='center' columns = {3} container>
             <Grid.Column>
               <Header as='h1' >Announcements</Header>
@@ -91,6 +94,7 @@ class Home extends React.Component {
 /** Require an array of Cards documents in the props. */
 Home.propTypes = {
   cards: PropTypes.array.isRequired,
+  currentUser: PropTypes.object,
 };
 
 /** withTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker */
@@ -100,5 +104,6 @@ export default withTracker(() => {
   return {
     cards: Opportunities.find({}).fetch(),
     ready: (subscription.ready()),
+    currentUser: Meteor.user() ? Meteor.user().profile : {},
   };
 })(Home);
