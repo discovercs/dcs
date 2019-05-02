@@ -2,9 +2,10 @@ import React from 'react';
 import _ from 'lodash'
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Card, Container, Grid, Header, Dropdown, List, Search, Label } from 'semantic-ui-react';
+import { Container, Grid, Header, Dropdown, List, Search, Label } from 'semantic-ui-react';
 import { Opportunities } from '/imports/api/opportunities/opportunities';
 import PropTypes from 'prop-types';
+import Opportunity from '/imports/ui/components/Opportunity';
 
 const resultRenderer = ({ name }) => <Label content={name} />
 
@@ -18,36 +19,42 @@ class ListOpportunities extends React.Component {
 
   componentWillMount() {
     this.resetComponent()
-  }
+  };
 
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' })
+  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
 
-  handleResultSelect = (e, { result }) => this.setState({ value: result.name })
+  handleResultSelect = (e, { result }) => this.setState({ value: result.name });
 
   handleSearchChange = (e, { value }) => {
-    this.setState({ isLoading: true, value })
+    this.setState({ isLoading: true, value });
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent()
+      if (this.state.value.length < 1) return this.resetComponent();
 
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.name)
+      const re = new RegExp(_.escapeRegExp(this.state.value), 'i');
+      const isMatch = result => re.test(result.name);
 
       this.setState({
         isLoading: false,
         results: _.filter(this.props.opportunities, isMatch),
       })
     }, 300)
-  }
+  };
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
-    const { isLoading, value, results } = this.state
-    console.log(results)
+    const { isLoading, value, results } = this.state;
+    const test = (this.state.results.length!=0);
+
+    // function ifExists(o) {
+    //   _.find
+    // }
+
+    console.log(results);
     return (
        <div>
          <Container>
-           <Grid style={{ margin: '50px' }} verticalAlign='middle' textAlign='center' columns = {3} container>
+           c<Grid style={{ margin: '50px' }} verticalAlign='middle' textAlign='center' columns = {3} container>
              <Grid.Column>
                <Header as='h1' >Find Opportunities</Header>
 
@@ -117,7 +124,7 @@ class ListOpportunities extends React.Component {
 
              <Grid.Column>
 
-
+               {/*{results.map((o) => test ? (<Opportunity key={`${o._id}2`} opportunities={o} owned={false}/>) : '')}*/}
 
              </Grid.Column>
            </Grid>
@@ -127,6 +134,12 @@ class ListOpportunities extends React.Component {
   }
 
 }
+
+// accountOpportunities (array of strings that have the opportunityIDs)
+// check if the opportunity._id from the results (array of opportunity objects)  EXISTS inside accountOpportunities
+// access it with this.props.accountOpportunities
+// return true if exists, false otherwise
+
 
 ListOpportunities.propTypes = {
   opportunities: PropTypes.array.isRequired,

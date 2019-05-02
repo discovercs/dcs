@@ -23,7 +23,6 @@ import Signup from '../pages/Signup';
 import Signout from '../pages/Signout';
 import SignupInterests from '../pages/SignupInterests';
 import Profile from '../pages/Profile';
-import Temp from '../pages/Temp';
 
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */

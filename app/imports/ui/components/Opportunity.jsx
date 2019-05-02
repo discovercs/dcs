@@ -19,13 +19,9 @@ class Opportunity extends React.Component {
             <Card.Description>
               {this.props.opportunities.description}
             </Card.Description>
-            <Card.Description> /* TODO: only list interests associated with opportunities */
-              Matching Interests
-              {this.props.interests.map((interest) => <Button>{interest.name}</Button>)}
-            </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Button className="ui basic">Learn More</Button> <Button className="ui basic">Add to Profile</Button>
+             <Button className="ui basic">Add to Profile</Button>
           </Card.Content>
         </Card>
     );
@@ -35,7 +31,6 @@ class Opportunity extends React.Component {
 /** Require a document to be passed to this component. */
 Opportunity.propTypes = {
   opportunities: PropTypes.object.isRequired,
-  interests: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
