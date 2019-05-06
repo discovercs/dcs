@@ -18,7 +18,6 @@ class InterestItem extends React.Component {
         this.formRef = null;
     }
 
-
     handleClickAdd() {
         if (confirm('Do you really want to add this interest?')) {
             Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {"profile.interestNames": this.props.interests.name}});
@@ -40,7 +39,6 @@ class InterestItem extends React.Component {
                     <Card.Description>{this.props.interests.description}</Card.Description>
                     {this.props.owned ? (<Button onClick={this.handleClickRemove}>Remove</Button>) : (<Button onClick={this.handleClickAdd}>Add</Button>)}
                 </Card.Content>
-
             </Card>
         );
     }
