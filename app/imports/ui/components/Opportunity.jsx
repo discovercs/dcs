@@ -7,6 +7,8 @@ import { withRouter } from 'react-router-dom';
 class Opportunity extends React.Component {
 
   render() {
+
+    let d = this.props.opportunities.date.toString();
     return (
         <Card centered>
           <Card.Content>
@@ -14,10 +16,10 @@ class Opportunity extends React.Component {
               {this.props.opportunities.name}
             </Card.Header>
             <Card.Meta>
-              {this.props.opportunities.types} {this.props.opportunities.date}
+              {this.props.opportunities.types} {d}
             </Card.Meta>
             <Card.Description>
-              {this.props.opportunities.description}
+              {this.props.opportunities.description.substring(0,159)}
             </Card.Description>
           </Card.Content>
           <Card.Content extra>

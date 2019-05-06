@@ -2,10 +2,11 @@ import React from 'react';
 import _ from 'lodash'
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Grid, Header, Dropdown, List, Search, Label } from 'semantic-ui-react';
+import { Container, Grid, Header, Dropdown, List, Search, Label, Card } from 'semantic-ui-react';
 import { Opportunities } from '/imports/api/opportunities/opportunities';
 import PropTypes from 'prop-types';
-import Opportunity from '/imports/ui/components/Opportunity';
+import Opportunity from '../components/Opportunity';
+import Career from '../components/Career';
 
 const resultRenderer = ({ name }) => <Label content={name} />
 
@@ -44,17 +45,15 @@ class ListOpportunities extends React.Component {
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     const { isLoading, value, results } = this.state;
-    const test = (this.state.results.length!=0);
 
-    // function ifExists(o) {
-    //   _.find
-    // }
+    for(let o of this.props.opportunities) {
+      console.log(o);
+    }
 
-    console.log(results);
     return (
        <div>
          <Container>
-           c<Grid style={{ margin: '50px' }} verticalAlign='middle' textAlign='center' columns = {3} container>
+           <Grid style={{ margin: '50px' }} verticalAlign='top' textAlign='center' columns = {3} container>
              <Grid.Column>
                <Header as='h1' >Find Opportunities</Header>
 
@@ -123,9 +122,9 @@ class ListOpportunities extends React.Component {
              </Grid.Column>
 
              <Grid.Column>
-
-               {/*{results.map((o) => test ? (<Opportunity key={`${o._id}2`} opportunities={o} owned={false}/>) : '')}*/}
-
+               <Card.Group>
+                 {results.map((opportunity) => <Opportunity key={opportunity._id} opportunities={opportunity}/>)}
+               </Card.Group>
              </Grid.Column>
            </Grid>
          </Container>

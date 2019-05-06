@@ -3,16 +3,25 @@ import { Roles } from 'meteor/alanning:roles';
 import { Opportunities } from '../../api/opportunities/opportunities';
 
 /** Initialize the database with a default data document. */
-function addData(data) {
+function addData(name, description, interestNames, careerNames, type, date, year, pic) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
-  Opportunities.insert(data);
+  Opportunities.insert({
+    name: name,
+    description: description,
+    interestNames: interestNames,
+    careerNames: careerNames,
+    type: type,
+    date: Date.parse(date),
+    year: year,
+    pic: pic,
+  });
 }
 
 /** Initialize the collection if empty. */
 if (Opportunities.find().count() === 0) {
   if (Meteor.settings.defaultOpportunities) {
     console.log('Creating default opportunities.');
-    Meteor.settings.defaultOpportunities.map(data => addData(data));
+    Meteor.settings.defaultOpportunities.map(({name, description, interestNames, careerNames, type, date, year, pic}) => addData(name, description, interestNames, careerNames, type, date, year, pic));
   }
 }
 
