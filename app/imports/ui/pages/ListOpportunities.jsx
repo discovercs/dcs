@@ -6,7 +6,7 @@ import { Container, Grid, Header, Dropdown, List, Search, Label, Card } from 'se
 import { Opportunities } from '/imports/api/opportunities/opportunities';
 import PropTypes from 'prop-types';
 import Opportunity from '../components/Opportunity';
-import Career from '../components/Career';
+
 
 const resultRenderer = ({ name }) => <Label content={name} />
 
@@ -17,6 +17,11 @@ resultRenderer.propTypes = {
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListOpportunities extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.selectType = this.selectType.bind(this);
+  }
 
   componentWillMount() {
     this.resetComponent()
@@ -42,13 +47,15 @@ class ListOpportunities extends React.Component {
     }, 300)
   };
 
+  selectType(byTypeValue) {
+    this.setState({results: _.filter(this.props.opportunities, result => result.type === byTypeValue)});
+  };
+
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     const { isLoading, value, results } = this.state;
 
-    for(let o of this.props.opportunities) {
-      console.log(o);
-    }
+    console.log(results)
 
     return (
        <div>
@@ -66,6 +73,7 @@ class ListOpportunities extends React.Component {
                        results={results}
                        resultRenderer={resultRenderer}
                        value={value}
+                       open={false}
                        {...this.props}
                    />
                  </List.Item>
@@ -73,10 +81,9 @@ class ListOpportunities extends React.Component {
                  <List.Item>
                    <Dropdown item text="By Type" icon="dropdown" as='h3'>
                      <Dropdown.Menu>
-                       <Dropdown.Item>Scholarship</Dropdown.Item>
-                       <Dropdown.Item>Internship</Dropdown.Item>
-                       <Dropdown.Item>Hackathon</Dropdown.Item>
-                       <Dropdown.Item>Event</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType("scholarship")}}>Scholarship</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType("internship")}}>Internship</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType("event")}}>Event</Dropdown.Item>
                      </Dropdown.Menu>
                    </Dropdown>
                  </List.Item>
