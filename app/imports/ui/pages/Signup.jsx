@@ -65,7 +65,7 @@ export default class Signup extends React.Component {
         this.setState({ error: err.reason });
       }
     });
-      return (<Redirect to={{ pathname: '/signin' } } />);
+      return (<Redirect to={{ pathname: '/signupinterests' } } />);
   }
 
   /** Display the signup form. */
