@@ -17,10 +17,6 @@ class Friend extends React.Component {
             <Card.Meta>
               {this.props.friend.profile.year}
             </Card.Meta>
-            <Card.Description>
-              Interests in Common
-              {this.props.interests.map((interest) => <Button>{interest.name}</Button>)}
-            </Card.Description>
           </Card.Content>
           <Card.Content extra>
             <Button className="ui basic">Add Friend</Button>
@@ -33,7 +29,6 @@ class Friend extends React.Component {
 /** Require a document to be passed to this component. */
 Friend.propTypes = {
   friend: PropTypes.object.isRequired,
-  interests: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */
