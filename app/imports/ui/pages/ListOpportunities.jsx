@@ -59,8 +59,8 @@ class ListOpportunities extends React.Component {
   isOwned(opp) {
     const i = opp._id;
     const arr = this.props.accountOpportunities;
-    const b = arr.find((o) => (o == i));
-    return b != undefined;
+    const b = arr.find((o) => (o === i));
+    return b !== undefined;
   }
 
   selectType(option, filter) {
@@ -107,8 +107,6 @@ class ListOpportunities extends React.Component {
       }
     }
     const test = arr.length != 0;
-    console.log(this.props.accountOpportunities);
-    console.log(arr);
 
 
     return (
@@ -174,7 +172,7 @@ class ListOpportunities extends React.Component {
              <Grid.Column>
                <Header as='h2' textAlign="center">Search Results</Header>
                <Card.Group itemsPerRow={2}>
-                 {results.map((opportunity) => <Opportunity key={opportunity._id} opportunities={opportunity} owned={() => { this.isOwned(opps) } }/>)}
+                 {results.map((opps) => <Opportunity key={opps._id} opportunities={opps} owned={false}/>)}
                </Card.Group>
              </Grid.Column>
              <Grid.Column>
