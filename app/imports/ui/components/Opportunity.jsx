@@ -27,7 +27,7 @@ class Opportunity extends React.Component {
 
   render() {
 
-    let d = this.props.opportunities.date.toString();
+    const d = this.props.opportunities.date.toString();
     return (
         <Card centered>
           <Card.Content>

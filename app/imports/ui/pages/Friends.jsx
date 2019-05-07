@@ -2,22 +2,24 @@ import React from 'react';
 import _ from 'lodash'
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Card, Container, Grid, Header, Image, Input, Button, Icon, Dropdown, List, Search } from 'semantic-ui-react';
+import { Card, Container, Grid, Header, Dropdown, List, Search } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Friend from '../components/Friend';
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class Friends extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //   this.selectType = this.selectType.bind(this);
-  //   this.selectTags = this.selectTags.bind(this);
-  //
-  // }
+  constructor(props) {
+    super(props);
+    this.selectType = this.selectType.bind(this);
+  }
 
   componentWillMount() {
     this.resetComponent()
+  };
+
+  selectType(option) {
+    this.setState({ results: _.filter(this.props.accounts, acc => acc.profile.year === option) });
   };
 
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
@@ -46,7 +48,7 @@ class Friends extends React.Component {
 
     return (
         <Container>
-          <Grid style={{ margin: '50px' }} verticalAlign='top' textAlign='center' columns = {3} container>
+          <Grid style={{ margin: '50px' }} verticalAlign='top' textAlign='center' columns = {2} container>
             <Grid.Column>
               <Header as='h1' >Find Friends</Header>
 
@@ -66,11 +68,10 @@ class Friends extends React.Component {
                 <List.Item>
                   <Dropdown item text="Class Standing" icon="dropdown" as='h3'>
                     <Dropdown.Menu>
-                      <Dropdown.Item>Freshman</Dropdown.Item>
-                      <Dropdown.Item>Sophomore</Dropdown.Item>
-                      <Dropdown.Item>Junior</Dropdown.Item>
-                      <Dropdown.Item>Senior</Dropdown.Item>
-                      <Dropdown.Item>Super-Senior</Dropdown.Item>
+                      <Dropdown.Item onClick={() => {this.selectType(1)}}>Freshman</Dropdown.Item>
+                      <Dropdown.Item onClick={() => {this.selectType(2)}}>Sophomore</Dropdown.Item>
+                      <Dropdown.Item onClick={() => {this.selectType(3)}}>Junior</Dropdown.Item>
+                      <Dropdown.Item onClick={() => {this.selectType(4)}}>Senior</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </List.Item>
@@ -78,8 +79,8 @@ class Friends extends React.Component {
             </Grid.Column>
 
             <Grid.Column>
-              <Card.Group>
-                {results.map((friends) => <Friend key={friends._id} friend={friends}/>)}
+              <Card.Group itemsPerRow={2}>
+                {results.map((friends) => <Friend key={friends._id} friend={friends} owned={false}/>)}
               </Card.Group>
             </Grid.Column>
           </Grid>

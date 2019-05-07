@@ -10,6 +10,7 @@ import {Careers} from '/imports/api/careers/careers';
 import Career from '/imports/ui/components/Career';
 import {Opportunities} from '/imports/api/opportunities/opportunities';
 import Opportunity from '/imports/ui/components/Opportunity';
+import Friend from '/imports/ui/components/Friend';
 
 
 
@@ -67,7 +68,16 @@ class Profile extends React.Component {
       }
     }
     const accOppsTest = (accOpps.length!=0);
-    console.log(accOpps);
+
+    const accFriends = [];
+    for (let i = 0; i < this.props.accountFriends.length; i++) {
+      let a = this.props.accountFriends[i];
+      let d = this.props.accounts.find((acc) => acc._id === a );
+      if (d!=undefined) {
+        accFriends.push(d);
+      }
+    }
+    const accFriendsTest = (accFriends.length!=0);
 
     return (
         <div>
@@ -97,11 +107,13 @@ class Profile extends React.Component {
               <Header as='h1' >My Opportunities</Header>
               <Card.Group>
                 {accOpps.map((opp) => accOppsTest ? (<Opportunity key={`${opp._id}2`} opportunities={opp} owned={true}/>) : '')}
-
               </Card.Group>
             </Grid.Column>
             <Grid.Column>
               <Header as='h1' >My Friends</Header>
+              <Card.Group>
+                {accFriends.map((friend) => accFriendsTest ? (<Friend key={`${friend._id}2`} friend={friend} owned={true}/>) : '')}
+              </Card.Group>
             </Grid.Column>
           </Grid>
         </div>
@@ -118,6 +130,8 @@ Profile.propTypes = {
   accountCareers: PropTypes.array.isRequired,
   opportunities: PropTypes.array.isRequired,
   accountOpportunities: PropTypes.array.isRequired,
+  accounts: PropTypes.array.isRequired,
+  accountFriends: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
@@ -125,6 +139,7 @@ const ProfileContainer = withTracker(() => {
   const sub1 = Meteor.subscribe('Interests');
   const sub2 = Meteor.subscribe('Careers');
   const sub3 = Meteor.subscribe('Opportunities');
+  const sub4 = Meteor.subscribe('userList');
 
   return {
     currentUser: Meteor.user() ? Meteor.user().profile : {},
@@ -134,7 +149,9 @@ const ProfileContainer = withTracker(() => {
     accountCareers: Meteor.user() ? Meteor.user().profile.careerNames : [''],
     opportunities: Opportunities.find({}).fetch(),
     accountOpportunities: Meteor.user() ? Meteor.user().profile.opportunityIDs : [''],
-    ready: (sub1.ready() && sub2.ready() && sub3.ready()),
+    accounts: Meteor.users.find({}).fetch(),
+    accountFriends: Meteor.user() ? Meteor.user().profile.friendIDs : [''],
+    ready: (sub1.ready() && sub2.ready() && sub3.ready() && sub4.ready()),
   }
 })(Profile);
 
