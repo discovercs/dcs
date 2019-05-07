@@ -1,12 +1,19 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Careers } from '../../api/careers/careers.js';
+import allInterestNames from './interests';
 
 /** Initialize the database with a default data document. */
+export const allCareerNames = [];
+
+
 function addData(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
   Careers.insert(data);
+  allCareerNames.push(data.name);
+
 }
+
 
 /** Initialize the collection if empty. */
 if (Careers.find().count() === 0) {
@@ -28,3 +35,4 @@ Meteor.publish('CareersAdmin', function publish() {
   }
   return this.ready();
 });
+

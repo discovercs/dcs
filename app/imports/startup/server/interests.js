@@ -3,9 +3,12 @@ import { Roles } from 'meteor/alanning:roles';
 import { Interests } from '../../api/interests/interests';
 
 /** Initialize the database with a default data document. */
+export const allInterestNames = [];
+
 function addData(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
   Interests.insert(data);
+  allInterestNames.push(data.name);
 }
 
 /** Initialize the collection if empty. */
@@ -28,3 +31,4 @@ Meteor.publish('InterestsAdmin', function publish() {
   }
   return this.ready();
 });
+

@@ -4,7 +4,7 @@ import { Opportunities } from '../../api/opportunities/opportunities';
 
 /** Initialize the database with a default data document. */
 function addData(name, description, interestNames, careerNames, type, date, year, pic) {
-  console.log(`  Adding: ${data.name} (${data.owner})`);
+  console.log(`  Adding: ${name} `);
   Opportunities.insert({
     name: name,
     description: description,

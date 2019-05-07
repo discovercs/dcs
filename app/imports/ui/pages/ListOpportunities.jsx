@@ -7,13 +7,19 @@ import { Opportunities } from '/imports/api/opportunities/opportunities';
 import PropTypes from 'prop-types';
 import Opportunity from '../components/Opportunity';
 
-
-const resultRenderer = ({ name }) => <Label content={name} />
+const resultRenderer = ({ name }) => <Label content={name} />;
 
 resultRenderer.propTypes = {
   name: PropTypes.string,
   description: PropTypes.string,
-}
+};
+
+
+const allInterestNames = ["Java","React", "Bioinformatics", "Virtual Reality", "Mathematics", "Assembler", "Biology", "Computer Vision", "Data Science", "Game Design", "Linux", "Machine Learning", "Python", "Robotics", "Teaching", "Internet of Things", "Graphic Design", "Blockchain", "C#","Unity", "Artificial Intelligence", "Cognitive Science", "Cryptography", "SQL", "Human Computer Interaction", "Javascript", "Security", "Engineering"];
+
+const allCareerNames = [
+    "IoT Architect", "Data Scientist", "Database Administrator", "Robotics Engineer", "VR-AR Engineer", "Molbile App Developer", "UX Designer", "Game Developer", "Full Stack Developer", "Security Analyst"
+  ];
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 class ListOpportunities extends React.Component {
@@ -21,6 +27,8 @@ class ListOpportunities extends React.Component {
   constructor(props) {
     super(props);
     this.selectType = this.selectType.bind(this);
+    this.selectTags = this.selectTags.bind(this);
+
   }
 
   componentWillMount() {
@@ -47,15 +55,37 @@ class ListOpportunities extends React.Component {
     }, 300)
   };
 
-  selectType(byTypeValue) {
-    this.setState({results: _.filter(this.props.opportunities, result => result.type === byTypeValue)});
+  selectType(option, filter) {
+    if (filter === "type") {
+      this.setState({ results: _.filter(this.props.opportunities, opp => opp.type === option) });
+    }
+    if (filter === "year") {
+      this.setState({ results: _.filter(this.props.opportunities, opp => opp.year === option) });
+    }
   };
+
+  findName(opp, n, iOrC) {
+    if (iOrC === "i") {
+      return (opp.interestNames.find((i) => i === n)) != undefined;
+    }
+    if (iOrC === "c") {
+      return (opp.careerNames.find((c) => c === n)) != undefined;
+    }
+
+  }
+
+  selectTags(n, iOrC) {
+    //let test = allInterestNames.map((n) => <Dropdown.Item onClick={} text={n}/>);
+    this.setState({ results: _.filter(this.props.opportunities, opp => this.findName(opp,n, iOrC)) });
+  }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     const { isLoading, value, results } = this.state;
 
-    console.log(results)
+    console.log(allInterestNames);
+    console.log(allCareerNames);
+
 
     return (
        <div>
@@ -81,38 +111,33 @@ class ListOpportunities extends React.Component {
                  <List.Item>
                    <Dropdown item text="By Type" icon="dropdown" as='h3'>
                      <Dropdown.Menu>
-                       <Dropdown.Item onClick={() => {this.selectType("scholarship")}}>Scholarship</Dropdown.Item>
-                       <Dropdown.Item onClick={() => {this.selectType("internship")}}>Internship</Dropdown.Item>
-                       <Dropdown.Item onClick={() => {this.selectType("event")}}>Event</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType("scholarship", "type")}}>Scholarship</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType("internship", "type")}}>Internship</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType("event", "type")}}>Event</Dropdown.Item>
                      </Dropdown.Menu>
                    </Dropdown>
                  </List.Item>
                  <List.Item>
                    <Dropdown item text="By Class Standing" icon="dropdown" as='h3'>
                      <Dropdown.Menu>
-                       <Dropdown.Item>Freshman</Dropdown.Item>
-                       <Dropdown.Item>Sophomore</Dropdown.Item>
-                       <Dropdown.Item>Junior</Dropdown.Item>
-                       <Dropdown.Item>Senior</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType(1, "year")}}>Freshman/Sophomore</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType(2, "year")}}>Sophomore/Junior</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType(3, "year")}}>Junior/Senior</Dropdown.Item>
+                       <Dropdown.Item onClick={() => {this.selectType(4, "year")}}>All</Dropdown.Item>
                      </Dropdown.Menu>
                    </Dropdown>
                  </List.Item>
                  <List.Item>
                    <Dropdown item text="By Interest" icon="dropdown" as='h3'>
-                     <Dropdown.Menu>
-                       <Dropdown.Item>Javascript</Dropdown.Item>
-                       <Dropdown.Item>React</Dropdown.Item>
-                       <Dropdown.Item>HTML/CSS</Dropdown.Item>
-                       <Dropdown.Item>Python</Dropdown.Item>
+                     <Dropdown.Menu scrolling>
+                       {allInterestNames.map((n) => <Dropdown.Item key={n} text={n} onClick={() => {this.selectTags(n, "i")}}/>)}
                      </Dropdown.Menu>
                    </Dropdown>
                  </List.Item>
                  <List.Item>
                    <Dropdown item text="By Career" icon="dropdown" as='h3'>
-                     <Dropdown.Menu>
-                       <Dropdown.Item>Data Scientist</Dropdown.Item>
-                       <Dropdown.Item>Mobile App Programmer</Dropdown.Item>
-                       <Dropdown.Item>Security Analyst</Dropdown.Item>
+                     <Dropdown.Menu scrolling>
+                       {allCareerNames.map((n) => <Dropdown.Item key={n} text={n} onClick={() => {this.selectTags(n, "c")}}/>)}
                      </Dropdown.Menu>
                    </Dropdown>
                  </List.Item>
