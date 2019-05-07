@@ -4,13 +4,11 @@ import { Careers } from '../../api/careers/careers.js';
 import allInterestNames from './interests';
 
 /** Initialize the database with a default data document. */
-export const allCareerNames = [];
 
 
 function addData(data) {
   console.log(`  Adding: ${data.name} (${data.owner})`);
   Careers.insert(data);
-  allCareerNames.push(data.name);
 
 }
 
