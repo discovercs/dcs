@@ -11,7 +11,6 @@ class Career extends React.Component {
         super(props);
         this.handleClickAdd = this.handleClickAdd.bind(this);
         this.handleClickRemove = this.handleClickRemove.bind(this);
-        this.formRef = null;
     }
 
 
@@ -38,9 +37,6 @@ class Career extends React.Component {
             <Card.Meta>
               {this.props.career.description.substring(0, 159)}
             </Card.Meta>
-            <Card.Description>
-              Matching Interests
-            </Card.Description>
           </Card.Content>
           <Card.Content extra>
               {this.props.owned ? (<Button onClick={this.handleClickRemove}>Remove</Button>) : (<Button onClick={this.handleClickAdd}>Add</Button>)}
@@ -54,7 +50,6 @@ class Career extends React.Component {
 Career.propTypes = {
   career: PropTypes.object.isRequired,
     owned: PropTypes.bool.isRequired
-  //interests: PropTypes.array.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

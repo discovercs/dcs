@@ -1,10 +1,9 @@
 import React from 'react';
-import {Meteor} from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
 import {Card, Button, Image} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import {withRouter, Link} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Interests from '/imports/api/interests/interests';
-import { Bert } from 'meteor/themeteorchef:bert';
 
 /* eslint-disable no-console */
 
@@ -15,7 +14,6 @@ class InterestItem extends React.Component {
         super(props);
         this.handleClickAdd = this.handleClickAdd.bind(this);
         this.handleClickRemove = this.handleClickRemove.bind(this);
-        this.formRef = null;
     }
 
     handleClickAdd() {

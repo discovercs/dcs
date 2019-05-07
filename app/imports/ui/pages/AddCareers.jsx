@@ -2,7 +2,7 @@ import React from 'react';
 import {Meteor} from 'meteor/meteor';
 import {withTracker} from 'meteor/react-meteor-data';
 import {Careers} from '/imports/api/careers/careers';
-import {Grid, Container, Card, Image, Divider, Header} from 'semantic-ui-react';
+import {Grid, Container, Card, Header} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Career from '/imports/ui/components/Career';
 

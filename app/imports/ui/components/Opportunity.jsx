@@ -1,10 +1,29 @@
 import React from 'react';
-import { Card, Image, Button } from 'semantic-ui-react';
+import { Card, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import { Meteor } from "meteor/meteor";
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 class Opportunity extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.handleClickAdd = this.handleClickAdd.bind(this);
+    this.handleClickRemove = this.handleClickRemove.bind(this);
+  }
+
+  handleClickAdd() {
+    if (confirm('Do you really want to add this opportunity?')) {
+      Meteor.users.update({_id: Meteor.userId()}, {$addToSet: {"profile.opportunityIDs": this.props.opportunities._id}});
+    }
+  }
+
+  handleClickRemove() {
+    if (confirm('Do you really want to remove this opportunity?')) {
+      Meteor.users.update({_id: Meteor.userId()}, {$pull: {"profile.opportunityIDs": this.props.opportunities._id}});
+    }
+  }
 
   render() {
 
@@ -21,9 +40,7 @@ class Opportunity extends React.Component {
             <Card.Description>
               {this.props.opportunities.description.substring(0,159)}
             </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-             <Button className="ui basic">Add to Profile</Button>
+            {this.props.owned ? (<Button onClick={this.handleClickRemove}>Remove</Button>) : (<Button onClick={this.handleClickAdd}>Add</Button>)}
           </Card.Content>
         </Card>
     );
@@ -33,6 +50,7 @@ class Opportunity extends React.Component {
 /** Require a document to be passed to this component. */
 Opportunity.propTypes = {
   opportunities: PropTypes.object.isRequired,
+  owned: PropTypes.bool.isRequired,
 };
 
 /** Wrap this component in withRouter since we use the <Link> React Router element. */

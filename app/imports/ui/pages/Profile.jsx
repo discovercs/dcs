@@ -1,13 +1,16 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Card, Image, Divider, Header, Grid, Loader } from 'semantic-ui-react';
+import { Card, Image, Divider, Header, Grid, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import {Interests} from '/imports/api/interests/interests';
 import InterestItem from '/imports/ui/components/InterestItem';
 import {Careers} from '/imports/api/careers/careers';
 import Career from '/imports/ui/components/Career';
+import {Opportunities} from '/imports/api/opportunities/opportunities';
+import Opportunity from '/imports/ui/components/Opportunity';
+
 
 
 /** Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
@@ -55,6 +58,16 @@ class Profile extends React.Component {
     }
     const accCareersTest = (accCareers.length!=0);
 
+    const accOpps = [];
+    for (let i = 0; i < this.props.accountOpportunities.length; i++) {
+      let a = this.props.accountOpportunities[i];
+      let d = this.props.opportunities.find( (opp) => opp._id === a );
+      if (d!=undefined) {
+        accOpps.push(d);
+      }
+    }
+    const accOppsTest = (accOpps.length!=0);
+    console.log(accOpps);
 
     return (
         <div>
@@ -82,6 +95,10 @@ class Profile extends React.Component {
             </Grid.Column>
             <Grid.Column>
               <Header as='h1' >My Opportunities</Header>
+              <Card.Group>
+                {accOpps.map((opp) => accOppsTest ? (<Opportunity key={`${opp._id}2`} opportunities={opp} owned={true}/>) : '')}
+
+              </Card.Group>
             </Grid.Column>
             <Grid.Column>
               <Header as='h1' >My Friends</Header>
@@ -99,19 +116,25 @@ Profile.propTypes = {
   accountInterests: PropTypes.array.isRequired,
   careers: PropTypes.array.isRequired,
   accountCareers: PropTypes.array.isRequired,
+  opportunities: PropTypes.array.isRequired,
+  accountOpportunities: PropTypes.array.isRequired,
   ready: PropTypes.bool.isRequired,
 };
 
 const ProfileContainer = withTracker(() => {
   const sub1 = Meteor.subscribe('Interests');
   const sub2 = Meteor.subscribe('Careers');
+  const sub3 = Meteor.subscribe('Opportunities');
+
   return {
     currentUser: Meteor.user() ? Meteor.user().profile : {},
     interests: Interests.find().fetch(),
     accountInterests: Meteor.user() ? Meteor.user().profile.interestNames : [''],
     careers: Careers.find({}).fetch(),
     accountCareers: Meteor.user() ? Meteor.user().profile.careerNames : [''],
-    ready: (sub1.ready() && sub2.ready()),
+    opportunities: Opportunities.find({}).fetch(),
+    accountOpportunities: Meteor.user() ? Meteor.user().profile.opportunityIDs : [''],
+    ready: (sub1.ready() && sub2.ready() && sub3.ready()),
   }
 })(Profile);
 

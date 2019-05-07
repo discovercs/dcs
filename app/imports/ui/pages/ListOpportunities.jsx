@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash'
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Container, Grid, Header, Dropdown, List, Search, Label, Card } from 'semantic-ui-react';
+import {  Divider, Grid, Header, Dropdown, Search, Label, Card, Menu } from 'semantic-ui-react';
 import { Opportunities } from '/imports/api/opportunities/opportunities';
 import PropTypes from 'prop-types';
 import Opportunity from '../components/Opportunity';
@@ -28,12 +28,13 @@ class ListOpportunities extends React.Component {
     super(props);
     this.selectType = this.selectType.bind(this);
     this.selectTags = this.selectTags.bind(this);
-
+    this.selectDate = this.selectDate.bind(this);
+    this.isOwned = this.isOwned.bind(this);
   }
 
   componentWillMount() {
-    this.resetComponent()
-  };
+    this.resetComponent();
+  }
 
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
 
@@ -51,9 +52,16 @@ class ListOpportunities extends React.Component {
       this.setState({
         isLoading: false,
         results: _.filter(this.props.opportunities, isMatch),
-      })
-    }, 300)
+      });
+    }, 300);
   };
+
+  isOwned(opp) {
+    const i = opp._id;
+    const arr = this.props.accountOpportunities;
+    const b = arr.find((o) => (o == i));
+    return b != undefined;
+  }
 
   selectType(option, filter) {
     if (filter === "type") {
@@ -75,102 +83,110 @@ class ListOpportunities extends React.Component {
   }
 
   selectTags(n, iOrC) {
-    //let test = allInterestNames.map((n) => <Dropdown.Item onClick={} text={n}/>);
     this.setState({ results: _.filter(this.props.opportunities, opp => this.findName(opp,n, iOrC)) });
+  }
+
+  selectDate(aOrD) {
+    if (aOrD === "a") {
+      this.setState({ results: this.props.opportunities});
+    }
+    if (aOrD === "d") {
+      this.setState({ results:  this.props.opportunities.reverse()});
+    }
   }
 
   /** If the subscription(s) have been received, render the page, otherwise show a loading icon. */
   render() {
     const { isLoading, value, results } = this.state;
-
-    console.log(allInterestNames);
-    console.log(allCareerNames);
+    const arr = [];
+    for (let i = 0; i < this.props.accountOpportunities.length; i++) {
+      let a = this.props.accountOpportunities[i];
+      let d = this.props.opportunities.find( (opp) => opp._id === a );
+      if (d!=undefined) {
+        arr.push(d);
+      }
+    }
+    const test = arr.length != 0;
+    console.log(this.props.accountOpportunities);
+    console.log(arr);
 
 
     return (
        <div>
-         <Container>
-           <Grid style={{ margin: '50px' }} verticalAlign='top' textAlign='center' columns = {3} container>
+         <Divider/>
+           <Header as='h1' textAlign="center">Find Opportunities</Header>
+           <Menu secondary fluid>
+             <Menu.Item>
+               <Search
+                   loading={isLoading}
+                   onResultSelect={this.handleResultSelect}
+                   onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+                   results={results}
+                   resultRenderer={resultRenderer}
+                   value={value}
+                   open={false}
+                   {...this.props}
+               />
+             </Menu.Item>
+             <Menu.Item>
+               <Dropdown item text="By Type" icon="dropdown" as='h3'>
+                 <Dropdown.Menu>
+                   <Dropdown.Item onClick={() => {this.selectType("scholarship", "type")}}>Scholarship</Dropdown.Item>
+                   <Dropdown.Item onClick={() => {this.selectType("internship", "type")}}>Internship</Dropdown.Item>
+                   <Dropdown.Item onClick={() => {this.selectType("event", "type")}}>Event</Dropdown.Item>
+                 </Dropdown.Menu>
+               </Dropdown>
+             </Menu.Item>
+             <Menu.Item>
+               <Dropdown item text="By Class Standing" icon="dropdown" as='h3'>
+                 <Dropdown.Menu>
+                   <Dropdown.Item onClick={() => {this.selectType(1, "year")}}>Freshman/Sophomore</Dropdown.Item>
+                   <Dropdown.Item onClick={() => {this.selectType(2, "year")}}>Sophomore/Junior</Dropdown.Item>
+                   <Dropdown.Item onClick={() => {this.selectType(3, "year")}}>Junior/Senior</Dropdown.Item>
+                   <Dropdown.Item onClick={() => {this.selectType(4, "year")}}>All</Dropdown.Item>
+                 </Dropdown.Menu>
+               </Dropdown>
+             </Menu.Item>
+             <Menu.Item>
+               <Dropdown item text="By Interest" icon="dropdown" as='h3'>
+                 <Dropdown.Menu>
+                   {allInterestNames.map((n) => <Dropdown.Item key={n} text={n} onClick={() => {this.selectTags(n, "i")}}/>)}
+                 </Dropdown.Menu>
+               </Dropdown>
+             </Menu.Item>
+             <Menu.Item>
+               <Dropdown item text="By Career" icon="dropdown" as='h3'>
+                 <Dropdown.Menu>
+                   {allCareerNames.map((n) => <Dropdown.Item key={n} text={n} onClick={() => {this.selectTags(n, "c")}}/>)}
+                 </Dropdown.Menu>
+               </Dropdown>
+             </Menu.Item>
+             <Menu.Item>
+               <Dropdown item text="By Date" icon="dropdown" as='h3'>
+                 <Dropdown.Menu>
+                   <Dropdown.Item onClick={() => {this.selectDate(a)}}>Ascending</Dropdown.Item>
+                   <Dropdown.Item onClick={() => {this.selectDate(d)}}>Descending</Dropdown.Item>
+                 </Dropdown.Menu>
+               </Dropdown>
+             </Menu.Item>
+           </Menu>
+           <Grid columns={2} celled verticalAlign='top' textAlign='center'>
              <Grid.Column>
-               <Header as='h1' >Find Opportunities</Header>
-
-               <List>
-                 <List.Item>
-                   <Search
-                       loading={isLoading}
-                       onResultSelect={this.handleResultSelect}
-                       onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-                       results={results}
-                       resultRenderer={resultRenderer}
-                       value={value}
-                       open={false}
-                       {...this.props}
-                   />
-                 </List.Item>
-
-                 <List.Item>
-                   <Dropdown item text="By Type" icon="dropdown" as='h3'>
-                     <Dropdown.Menu>
-                       <Dropdown.Item onClick={() => {this.selectType("scholarship", "type")}}>Scholarship</Dropdown.Item>
-                       <Dropdown.Item onClick={() => {this.selectType("internship", "type")}}>Internship</Dropdown.Item>
-                       <Dropdown.Item onClick={() => {this.selectType("event", "type")}}>Event</Dropdown.Item>
-                     </Dropdown.Menu>
-                   </Dropdown>
-                 </List.Item>
-                 <List.Item>
-                   <Dropdown item text="By Class Standing" icon="dropdown" as='h3'>
-                     <Dropdown.Menu>
-                       <Dropdown.Item onClick={() => {this.selectType(1, "year")}}>Freshman/Sophomore</Dropdown.Item>
-                       <Dropdown.Item onClick={() => {this.selectType(2, "year")}}>Sophomore/Junior</Dropdown.Item>
-                       <Dropdown.Item onClick={() => {this.selectType(3, "year")}}>Junior/Senior</Dropdown.Item>
-                       <Dropdown.Item onClick={() => {this.selectType(4, "year")}}>All</Dropdown.Item>
-                     </Dropdown.Menu>
-                   </Dropdown>
-                 </List.Item>
-                 <List.Item>
-                   <Dropdown item text="By Interest" icon="dropdown" as='h3'>
-                     <Dropdown.Menu scrolling>
-                       {allInterestNames.map((n) => <Dropdown.Item key={n} text={n} onClick={() => {this.selectTags(n, "i")}}/>)}
-                     </Dropdown.Menu>
-                   </Dropdown>
-                 </List.Item>
-                 <List.Item>
-                   <Dropdown item text="By Career" icon="dropdown" as='h3'>
-                     <Dropdown.Menu scrolling>
-                       {allCareerNames.map((n) => <Dropdown.Item key={n} text={n} onClick={() => {this.selectTags(n, "c")}}/>)}
-                     </Dropdown.Menu>
-                   </Dropdown>
-                 </List.Item>
-                 <List.Item>
-                   <Dropdown item text="By Date" icon="dropdown" as='h3'>
-                     <Dropdown.Menu>
-                       <Dropdown.Item>May</Dropdown.Item>
-                       <Dropdown.Item>June</Dropdown.Item>
-                       <Dropdown.Item>July</Dropdown.Item>
-                     </Dropdown.Menu>
-                   </Dropdown>
-                 </List.Item>
-               </List>
-             </Grid.Column>
-
-             <Grid.Column>
-               <Card.Group>
-                 {results.map((opportunity) => <Opportunity key={opportunity._id} opportunities={opportunity}/>)}
+               <Header as='h2' textAlign="center">Search Results</Header>
+               <Card.Group itemsPerRow={2}>
+                 {results.map((opportunity) => <Opportunity key={opportunity._id} opportunities={opportunity} owned={false}/>)}
                </Card.Group>
              </Grid.Column>
+             <Grid.Column>
+               <Header as='h2' textAlign="center">My Opportunities</Header>
+               {arr.map((opps) => test ? (<Opportunity key={`${opps._id}2`} opportunities={opps} owned={() => { this.isOwned(opps) } }/>) : '')}
+             </Grid.Column>
            </Grid>
-         </Container>
        </div>
     );
   }
 
 }
-
-// accountOpportunities (array of strings that have the opportunityIDs)
-// check if the opportunity._id from the results (array of opportunity objects)  EXISTS inside accountOpportunities
-// access it with this.props.accountOpportunities
-// return true if exists, false otherwise
-
 
 ListOpportunities.propTypes = {
   opportunities: PropTypes.array.isRequired,
@@ -181,7 +197,7 @@ ListOpportunities.propTypes = {
 export default withTracker(() => {
   const subscription = Meteor.subscribe('Opportunities');
   return {
-    opportunities: Opportunities.find({}).fetch(),
+    opportunities: Opportunities.find().fetch(),
     accountOpportunities: Meteor.user() ? Meteor.user().profile.opportunityIDs : [""],
     ready: (subscription.ready()),
   };
