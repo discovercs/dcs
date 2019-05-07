@@ -174,7 +174,7 @@ class ListOpportunities extends React.Component {
              <Grid.Column>
                <Header as='h2' textAlign="center">Search Results</Header>
                <Card.Group itemsPerRow={2}>
-                 {results.map((opportunity) => <Opportunity key={opportunity._id} opportunities={opportunity} owned={false}/>)}
+                 {results.map((opportunity) => <Opportunity key={opportunity._id} opportunities={opportunity} owned={() => { this.isOwned(opps) } }/>)}
                </Card.Group>
              </Grid.Column>
              <Grid.Column>
